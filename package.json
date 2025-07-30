@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-paulo-lavarini",
+  "version": "1.0.0",
+  "description": "Portfolio profissional desenvolvido com foco em demonstrar habilidades em desenvolvimento web.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "web development",
+    "paulo lavarini"
+  ],
+  "author": "Paulo Lavarini",
+  "license": "MIT"
+}
