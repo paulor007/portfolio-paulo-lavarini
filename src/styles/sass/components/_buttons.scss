@@ -1,0 +1,85 @@
+// -----------------------------------------------------------------------------
+// Estilos para botões
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+// -----------------------------------------------------------------------------
+// Estilos para botões
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  padding: rem(12) rem(24);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: $transition-fast;
+  white-space: nowrap;
+
+  // Tamanhos
+  &--small {
+    padding: rem(8) rem(16);
+    font-size: $font-size-sm;
+  }
+
+  &--large {
+    padding: rem(16) rem(32);
+    font-size: $font-size-lg;
+  }
+
+  // Variantes
+  &--primary {
+    @include button-variant($color-primary);
+  }
+
+  &--secondary {
+    @include button-variant($color-secondary);
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover,
+    &:focus {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  // Estados
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Ícones
+  ion-icon {
+    font-size: rem(20);
+  }
+}
+
+// CTA específico do nav
+.nav__cta {
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    display: none;
+  }
+}

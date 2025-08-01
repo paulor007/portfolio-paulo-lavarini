@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// Este arquivo contém todas as funções Sass do projeto
+// -----------------------------------------------------------------------------
+
+@use 'sass:math';
+
+// Função para converter px para rem
+@function rem($pixels, $base: 16) {
+  @return math.div($pixels, $base) * 1rem;
+}
+
+// Função para converter px para em
+@function em($pixels, $base: 16) {
+  @return math.div($pixels, $base) * 1em;
+}
+
+// Função para calcular line-height
+@function line-height($font-size, $line-height-pixels) {
+  @return math.div($line-height-pixels, $font-size);
+}
+
+// Função para z-index
+@function z-index($key) {
+  @if $key == 'dropdown' {
+    @return 1000;
+  }
+  @if $key == 'sticky' {
+    @return 1020;
+  }
+  @if $key == 'fixed' {
+    @return 1030;
+  }
+  @if $key == 'modal-backdrop' {
+    @return 1040;
+  }
+  @if $key == 'modal' {
+    @return 1050;
+  }
+  @if $key == 'popover' {
+    @return 1060;
+  }
+  @if $key == 'tooltip' {
+    @return 1070;
+  }
+  @return null;
+}

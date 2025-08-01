@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// Header principal do site
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba($color-white, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $box-shadow-sm;
+  z-index: z-index(fixed);
+  transition: $transition-base;
+
+  // Estado quando rola a página
+  &-scrolled {
+    background-color: $color-white;
+    box-shadow: $box-shadow-md;
+  }
+
+  // Container interno;
+  .container {
+    @include container;
+  }
+}
+
+// Skip link para acessibilidade
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $color-primary;
+  color: $color-white;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  text-decoration: none;
+  z-index: z-index('tooltip');
+  transition: $transition-fast;
+
+  &:focus {
+    top: $spacing-sm;
+  }
+}

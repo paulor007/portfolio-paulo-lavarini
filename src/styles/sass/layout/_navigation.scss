@@ -1,0 +1,460 @@
+// -----------------------------------------------------------------------------
+// Navegação principal - ARQUIVO COMPLETO
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.nav {
+  // ALTERAÇÃO PRINCIPAL: Layout com flexbox e espaçamento
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // IMPORTANTE: Distribui elementos
+  height: rem(80);
+  width: 100%;
+  position: relative;
+  gap: rem(40); // ALTERAÇÃO: Gap entre todos os elementos
+
+  @include respond-to('md') {
+    height: rem(88);
+  }
+
+  // Logo - sempre à esquerda
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-gray-900;
+    text-decoration: none;
+    transition: $transition-fast;
+    z-index: z-index('sticky');
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    .nav__logo-accent {
+      color: $color-primary;
+    }
+
+    i {
+      font-size: $font-size-2xl;
+      color: $color-primary;
+      transition: transform $transition-fast;
+    }
+
+    &:hover {
+      i {
+        transform: translateY(-2px) rotate(-5deg);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 4px;
+      border-radius: $border-radius-sm;
+    }
+
+    &-text {
+      font-size: $font-size-xl;
+      letter-spacing: -0.01em;
+    }
+
+    &-accent {
+      color: $color-gray-700;
+      transition: color $transition-fast;
+    }
+  }
+
+  // Menu de navegação
+  &__menu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+
+    @include respond-to('lg') {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      margin-left: auto;
+      margin-right: rem(40);
+      padding-left: rem(100);
+    }
+
+    @include respond-to('xl') {
+      gap: $spacing-lg;
+      margin-right: rem(60);
+      padding-left: rem(150);
+    }
+
+    @include respond-to('2xl') {
+      padding-left: rem(200);
+    }
+
+    // Mobile styles
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(75vw, rem(400));
+      height: 100vh;
+      background-color: $color-white;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: rem(100);
+      padding-left: $spacing-xl;
+      padding-right: $spacing-xl;
+      margin: 0; // Reset margins no mobile
+      box-shadow: -4px 0 20px rgba($color-black, 0.1);
+      transition: right $transition-base;
+      z-index: z-index('modal');
+      overflow-y: auto;
+      display: flex !important; // Forçar display no mobile
+
+      &.nav__menu--open {
+        right: 0;
+      }
+    }
+  }
+
+  // Links do menu
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    color: $color-gray-700;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: rem(16); // Tamanho aumentado
+    position: relative;
+    transition: $transition-fast;
+    height: rem(44); // Altura mínima para acessibilidade
+
+    @include respond-to('lg') {
+      font-size: rem(15);
+      padding: $spacing-xs $spacing-md;
+    }
+
+    // Underline mais próximo
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: rem(8); // Mais próximo do texto
+      left: 50%;
+      width: 0;
+      height: rem(2);
+      background-color: $color-primary;
+      transform: translateX(-50%);
+      transition: width $transition-fast;
+      border-radius: $border-radius-full;
+
+      @media (max-width: #{$breakpoint-lg - 1px}) {
+        display: none;
+      }
+    }
+
+    // Hover com animação
+    &:hover {
+      color: $color-primary;
+      transform: translateY(-1px);
+
+      &::after {
+        width: calc(100% - #{$spacing-lg});
+      }
+    }
+
+    // Focus visível
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+      border-radius: $border-radius-sm;
+    }
+
+    // Estado ativo
+    &--active {
+      color: $color-primary;
+      font-weight: 600;
+
+      &::after {
+        width: calc(100% - #{$spacing-lg});
+        background-color: $color-primary;
+      }
+    }
+
+    // Mobile
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+      font-size: rem(18);
+      padding: $spacing-md $spacing-lg;
+      width: 100%;
+      justify-content: flex-start;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-gray-100;
+      }
+
+      &:hover {
+        background-color: $color-gray-50;
+        transform: none;
+      }
+    }
+  }
+
+  &__actions {
+    display: none;
+    align-items: center;
+    gap: $spacing-md;
+    flex-shrink: 0;
+
+    @include respond-to('lg') {
+      display: flex;
+    }
+
+    // No mobile, aparece dentro do menu
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+      display: flex !important;
+      flex-direction: row;
+      width: 100%;
+      margin-top: $spacing-2xl;
+      padding-top: $spacing-xl;
+      border-top: 1px solid $color-gray-200;
+      justify-content: center;
+      gap: $spacing-lg;
+    }
+  }
+
+  // Botão de tema
+  &__theme-toggle {
+    @include flex-center;
+    width: rem(44);
+    height: rem(44);
+    border: 2px solid $color-gray-200;
+    border-radius: $border-radius-full;
+    background-color: $color-white;
+    color: $color-gray-700;
+    cursor: pointer;
+    transition: all $transition-fast;
+    position: relative;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+      transform: translateY(-1px);
+      box-shadow: $box-shadow-sm;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    ion-icon {
+      font-size: rem(20);
+      position: absolute;
+      transition:
+        opacity $transition-fast,
+        transform $transition-fast;
+    }
+
+    &--animating {
+      ion-icon {
+        animation: theme-icon-rotate 0.5s ease-in-out;
+      }
+    }
+  }
+
+  // Ícones do tema
+  &__theme-icon {
+    &--light {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+
+    [data-theme='dark'] & {
+      &--dark {
+        opacity: 0;
+        transform: rotate(90deg);
+      }
+
+      &--light {
+        opacity: 1;
+        transform: rotate(0);
+      }
+    }
+  }
+
+  // Mobile toggle
+  &__toggle {
+    @include flex-center;
+    flex-direction: column;
+    width: rem(48);
+    height: rem(48);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: rem(4);
+    z-index: z-index('sticky');
+    margin-left: auto; // ALTERAÇÃO: Empurra para direita no mobile
+
+    @include respond-to('lg') {
+      display: none;
+    }
+
+    &-line {
+      display: block;
+      width: rem(24);
+      height: rem(2);
+      background-color: $color-gray-900;
+      transition: $transition-fast;
+      transform-origin: center;
+
+      // Animação X
+      .nav__toggle[aria-expanded='true'] & {
+        &:nth-child(1) {
+          transform: translateY(rem(6)) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+
+        &:nth-child(3) {
+          transform: translateY(rem(-6)) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+// Overlay mobile
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-black, 0);
+  z-index: z-index('modal-backdrop');
+  transition: background-color $transition-base;
+  pointer-events: none;
+
+  &--active {
+    background-color: rgba($color-black, 0.5);
+    pointer-events: all;
+  }
+}
+
+// Animação do ícone de tema
+@keyframes theme-icon-rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+// Tema escuro
+[data-theme='dark'] {
+  .header {
+    background-color: rgba($color-gray-900, 0.95);
+    box-shadow: 0 1px 0 rgba($color-white, 0.1);
+
+    &--scrolled {
+      background-color: $color-gray-900;
+      box-shadow: 0 4px 6px -1px rgba($color-black, 0.3);
+    }
+  }
+
+  .nav {
+    &__logo {
+      color: $color-gray-100;
+
+      i {
+        color: $color-primary-light;
+      }
+
+      &:hover {
+        .nav__logo-accent {
+          color: $color-primary-light;
+        }
+      }
+    }
+
+    &__logo-accent {
+      color: $color-primary;
+    }
+
+    &__link {
+      color: $color-gray-300;
+
+      &::after {
+        background-color: $color-primary-light;
+      }
+
+      &:hover,
+      &:focus,
+      &--active {
+        color: $color-primary-light;
+      }
+    }
+
+    &__theme-toggle {
+      border-color: $color-gray-600;
+      color: $color-gray-300;
+      background-color: $color-gray-800;
+
+      &:hover,
+      &:focus {
+        border-color: $color-primary-light;
+        color: $color-primary-light;
+      }
+    }
+
+    &__toggle-line {
+      background-color: $color-gray-100;
+    }
+
+    .button--primary {
+      background-color: $color-primary-dark;
+      border-color: $color-primary-dark;
+
+      &:hover {
+        background-color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+
+  // Mobile menu no dark
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    .nav__menu {
+      background-color: $color-gray-900;
+      box-shadow: -4px 0 20px rgba($color-black, 0.3);
+
+      .nav__link {
+        color: $color-gray-300;
+        border-bottom-color: $color-gray-800;
+
+        &:hover {
+          background-color: $color-gray-800;
+        }
+      }
+    }
+
+    .nav__actions {
+      border-top-color: $color-gray-800;
+    }
+  }
+}

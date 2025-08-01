@@ -1,9 +1,38 @@
-// Main Sass file - Entry point
-// Aqui importaremos todos os módulos conforme formos criando
+// -----------------------------------------------------------------------------
+// Arquivo principal do Sass - Ponto de entrada
+// Importa todos os módulos na ordem correta usando @use
+// -----------------------------------------------------------------------------
 
-// Teste inicial
+// 1. Abstracts (sem output CSS)
+@use 'abstracts/variables' as *;
+@use 'abstracts/functions' as *;
+@use 'abstracts/mixins' as *;
+
+//2. Base
+@use 'base/reset';
+
+// 3. Layout
+@use 'layout/header';
+@use 'layout/navigation';
+
+// 4. Components
+@use 'components/buttons';
+
+// 5. Utilities
+@use 'utilities/helpers';
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  padding-top: rem(80);
+  background-color: $color-gray-50;
+  color: $color-gray-900;
+  font-family: $font-primary;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+  color: $color-primary;
+
+  @include respond-to('md') {
+    font-size: $font-size-5xl;
+  }
 }

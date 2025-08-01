@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +8,176 @@
       content="Portfolio de Paulo Lavarini - Desenvolvedor Web especializado em HTML5, CSS3, JavaScript, Python e PostgreSQL"
     />
     <meta name="author" content="Paulo Lavarini" />
-    <title>aulo Lavarini - Desenvolvedor | Portfolio</title>
+    <meta
+      name="keywords"
+      content="desenvolvedor web, frontend, backend, portfolio, HTML5, CSS3, JavaScript, Python, PostgreSQL"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://paulolavarini.com/" />
+    <meta property="og:title" content="Paulo Lavarini - Desenvolvedor Web" />
+    <meta
+      property="og:description"
+      content="Portfolio profissional de desenvolvimento web com projetos em HTML5, CSS3, JavaScript, Python e PostgreSQL"
+    />
+    <meta
+      property="og:image"
+      content="https://paulolavarini.com/assets/og-image.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://paulolavarini.com/" />
+    <meta
+      property="twitter:title"
+      content="Paulo Lavarini - Desenvolvedor Web"
+    />
+    <meta
+      property="twitter:description"
+      content="Portfolio profissional de desenvolvimento web"
+    />
+
+    <title>Paulo Lavarini - Desenvolvedor Web | Portfolio</title>
+
+    <!-- Preconnect para otimizar carregamento de fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS compilado -->
+    <link rel="stylesheet" href="src/styles/css/main.css" />
+
+    <!-- Ionicons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </head>
   <body>
-    <h1>Portfolio em construção</h1>
+    <!-- Skip to content link para acessibilidade -->
+    <a href="#main-content" class="skip-link"
+      >Pular para o conteúdo principal</a
+    >
+
+    <!-- Header Principal -->
+    <header class="header" id="header">
+      <div class="container">
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+          <!-- ALTERAÇÃO: Estrutura simplificada sem wrapper adicional -->
+          <!-- Logo (à esquerda) -->
+          <a
+            href="#home"
+            class="nav__logo"
+            aria-label="Paulo Lavarini - Página Inicial"
+          >
+            <i class="fas fa-code" aria-hidden="true"></i>
+            <span class="nav__logo-text">
+              Paulo<span class="nav__logo-accent"> Lavarini</span>
+            </span>
+          </a>
+
+          <!-- ALTERAÇÃO: Menu sem wrapper, direto no nav -->
+          <!-- Menu de navegação -->
+          <ul class="nav__menu" id="nav-menu" role="menubar">
+            <li class="nav__item" role="none">
+              <a
+                href="#home"
+                class="nav__link nav__link--active"
+                role="menuitem"
+                aria-current="page"
+              >
+                <span class="nav__link-text">Início</span>
+              </a>
+            </li>
+            <li class="nav__item" role="none">
+              <a href="#about" class="nav__link" role="menuitem">
+                <span class="nav__link-text">Sobre</span>
+              </a>
+            </li>
+            <li class="nav__item" role="none">
+              <a href="#skills" class="nav__link" role="menuitem">
+                <span class="nav__link-text">Habilidades</span>
+              </a>
+            </li>
+            <li class="nav__item" role="none">
+              <a href="#projects" class="nav__link" role="menuitem">
+                <span class="nav__link-text">Projetos</span>
+              </a>
+            </li>
+            <li class="nav__item" role="none">
+              <a href="#contact" class="nav__link" role="menuitem">
+                <span class="nav__link-text">Contato</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- ALTERAÇÃO: Grupo de ações sem wrapper adicional -->
+          <!-- Grupo de ações -->
+          <div class="nav__actions" role="group" aria-label="Ações do usuário">
+            <!-- CTA Button -->
+            <a
+              href="#contact"
+              class="nav__cta button button--primary"
+              aria-label="Entrar em contato"
+            >
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+              <span>Fale Comigo</span>
+            </a>
+
+            <!-- Botão de tema -->
+            <button
+              class="nav__theme-toggle"
+              type="button"
+              aria-label="Alternar tema claro/escuro"
+              aria-pressed="false"
+              title="Alternar tema"
+            >
+              <ion-icon
+                name="moon-outline"
+                class="nav__theme-icon nav__theme-icon--dark"
+                aria-hidden="true"
+              ></ion-icon>
+              <ion-icon
+                name="sunny-outline"
+                class="nav__theme-icon nav__theme-icon--light"
+                aria-hidden="true"
+              ></ion-icon>
+            </button>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            class="nav__toggle"
+            id="nav-toggle"
+            type="button"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+      <h1>Portfolio em construção</h1>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="src/scripts/main.js" type="module"></script>
   </body>
 </html>

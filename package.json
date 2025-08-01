@@ -4,6 +4,12 @@
   "description": "Portfolio profissional desenvolvido com foco em demonstrar habilidades em desenvolvimento web.",
   "main": "index.html",
   "scripts": {
+    "sass": "sass src/styles/sass/main.scss src/styles/css/main.css --watch",
+    "sass:build": "sass src/styles/sass/main.scss src/styles/css/main.css --style=compressed --no-source-map",
+    "lint:styles": "stylelint \"src/styles/sass/**/*.scss\" --fix",
+    "format": "prettier --write \"**/*.{js,scss,html,json}\"",
+    "dev": "npm run sass",
+    "build": "npm run sass:build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,5 +18,12 @@
     "paulo lavarini"
   ],
   "author": "Paulo Lavarini",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "sass": "^1.89.2",
+    "stylelint": "^16.23.0",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "stylelint-order": "^7.0.0"
+  }
 }
