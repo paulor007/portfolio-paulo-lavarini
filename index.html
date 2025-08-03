@@ -73,7 +73,6 @@
     <header class="header" id="header">
       <div class="container">
         <nav class="nav" role="navigation" aria-label="Navegação principal">
-          <!-- ALTERAÇÃO: Estrutura simplificada sem wrapper adicional -->
           <!-- Logo (à esquerda) -->
           <a
             href="#home"
@@ -86,7 +85,6 @@
             </span>
           </a>
 
-          <!-- ALTERAÇÃO: Menu sem wrapper, direto no nav -->
           <!-- Menu de navegação -->
           <ul class="nav__menu" id="nav-menu" role="menubar">
             <li class="nav__item" role="none">
@@ -121,7 +119,6 @@
             </li>
           </ul>
 
-          <!-- ALTERAÇÃO: Grupo de ações sem wrapper adicional -->
           <!-- Grupo de ações -->
           <div class="nav__actions" role="group" aria-label="Ações do usuário">
             <!-- CTA Button -->
@@ -174,7 +171,104 @@
 
     <!-- Conteúdo Principal -->
     <main id="main-content">
-      <h1>Portfolio em construção</h1>
+      <!-- Hero Section -->
+      <section class="hero" id="home" aria-label="Introdução">
+        <div class="container">
+          <div class="hero__greeting" aria-label="Saudação">
+            <span class="hero__greeting-text">Olá, eu sou</span>
+            <span class="hero__greeting-wave" aria-label="Aceno">👋</span>
+          </div>
+
+          <!-- Nome principal -->
+          <h1 class="hero__title">Paulo Lavarini</h1>
+          <span class="hero__title-decoration" aria-hidden="true"></span>
+
+          <!-- Subtítulo com typewriter -->
+          <div class="hero__subtitle">
+            <span class="hero__subtitle-prefix">Desenvolvedor</span>
+            <span class="hero__subtitle-dynamic">
+              <span
+                class="hero__typewriter"
+                data-words='["Full Stack", "Frontend", "Backend", "Web"]'
+              >
+                <span class="hero__typewriter-text">Full Stack</span
+                ><span class="hero__typewriter-cursor" aria-hidden="true"
+                  >|</span
+                >
+              </span>
+            </span>
+          </div>
+
+          <!-- Descrição -->
+          <p class="hero__description">
+            Sou apaixonado por tecnologia e desenvolvimento de soluções digitais
+            personalizadas. Com formação em Sistemas de Informação, atuo na
+            criação de interfaces web, automações e projetos com
+            <strong>Python</strong>, sempre comprometido com resultados
+            práticos, código limpo e entrega de valor. Estou constantemente
+            evoluindo e expandindo meus conhecimentos,
+            <strong>especialmente em Python</strong>, para abraçar desafios além
+            do desenvolvimento web, como automações e análise de dados. Estou
+            aberto a novos desafios e oportunidades para crescer
+            profissionalmente e contribuir para a inovação.
+          </p>
+
+          <!-- Botões de ação -->
+          <div class="hero__actions">
+            <a href="#projects" class="button button--primary button--large"
+              ><ion-icon name="eye" aria-hidden="true"></ion-icon>
+              <span>Ver Projetos</span></a
+            >
+            <a href="#contact" class="button button--outline button--large">
+              <ion-icon name="send-outline" aria-hidden="true"></ion-icon>
+              <span>Entre em Contato</span>
+            </a>
+          </div>
+
+          <!-- Links sociais -->
+          <div class="hero__social">
+            <a
+              href="https://github.com/seu-usuario"
+              class="hero__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+            <a
+              href="https://linkedin.com/in/seu-usuario"
+              class="hero__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+            <a
+              href="mailto:seu-email@gmail.com"
+              class="hero__social-link"
+              aria-label="Email"
+            >
+              <ion-icon name="mail-outline"></ion-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Indicador de scroll -->
+        <div class="hero__scroll-indicator" aria-label="Role para baixo">
+          <span class="hero__scroll-text">Role para baixo</span>
+          <div class="hero__scroll-icon">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+        </div>
+
+        <!-- Background decorativo -->
+        <div class="hero__background" aria-hidden="true">
+          <div class="hero__gradient"></div>
+          <div class="hero__pattern"></div>
+        </div>
+      </section>
     </main>
 
     <!-- JavaScript -->

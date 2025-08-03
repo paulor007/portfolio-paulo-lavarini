@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// JavaScript principal
+// JavaScript principal - ARQUIVO COMPLETO E CORRIGIDO
 // -----------------------------------------------------------------------------
 
 // Elementos do DOM
@@ -7,7 +7,7 @@ const themeToggle = document.querySelector('.nav__theme-toggle');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-const navLinks = document.getElementById('nav__link');
+const navLinks = document.querySelectorAll('.nav__link'); // CORREÇÃO: querySelectorAll ao invés de getElementById
 const header = document.getElementById('header');
 const body = document.body;
 
@@ -39,7 +39,7 @@ function initializeTheme() {
   themeToggle.setAttribute('aria-pressed', theme === 'dark');
 }
 
-// Event listeners
+// Event listeners para tema
 themeToggle.addEventListener('click', toggleTheme);
 prefersDarkScheme.addEventListener('change', (e) => {
   if (!localStorage.getItem('theme')) {
@@ -50,7 +50,7 @@ prefersDarkScheme.addEventListener('change', (e) => {
 
 // Toggle do menu mobile
 function toggleMobileMenu() {
-  const isOpen = navToggle.getAttribute('aria-expanded') === true;
+  const isOpen = navToggle.getAttribute('aria-expanded') === 'true'; // CORREÇÃO: Comparação com string
 
   navToggle.setAttribute('aria-expanded', !isOpen);
   navToggle.setAttribute(
@@ -70,17 +70,27 @@ function toggleMobileMenu() {
 
 // Criar overlay
 function createOverlay() {
+  // CORREÇÃO: Verificar se já existe overlay
+  if (document.querySelector('.nav-overlay')) return;
+
   const overlay = document.createElement('div');
-  overlay.classList.add('nav-overlay', 'nav-overlay--active');
+  overlay.classList.add('nav-overlay');
   overlay.addEventListener('click', toggleMobileMenu);
   body.appendChild(overlay);
+
+  // CORREÇÃO: Adicionar classe active após criação para animação
+  requestAnimationFrame(() => {
+    overlay.classList.add('nav-overlay--active');
+  });
 }
 
 // Remover overlay
 function removeOverlay() {
   const overlay = document.querySelector('.nav-overlay');
   if (overlay) {
-    overlay.remove();
+    overlay.classList.remove('nav-overlay--active');
+    // CORREÇÃO: Aguardar animação antes de remover
+    setTimeout(() => overlay.remove(), 300);
   }
 }
 
@@ -144,6 +154,30 @@ function handleKeyboardNavigation(e) {
   }
 }
 
+// ADIÇÃO: Smooth scroll para links internos
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+
+      // Verifica se é apenas "#" (não fazer nada)
+      if (targetId === '#') return;
+
+      const target = document.querySelector(targetId);
+      if (target) {
+        const offset = 100; // Altura do header
+        const targetPosition = target.offsetTop - offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth',
+        });
+      }
+    });
+  });
+}
+
 // Event Listeners
 navToggle.addEventListener('click', toggleMobileMenu);
 navLinks.forEach((link) =>
@@ -165,8 +199,158 @@ const observer = new MutationObserver(() => {
 
 observer.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
 
-// Inicializar tema
-initializeTheme();
+// Typewriter Effect
+class Typewriter {
+  constructor(element) {
+    this.element = element;
+    this.words = JSON.parse(element.dataset.words || '[]');
+    this.textElement = element.querySelector('.hero__typewriter-text');
+    this.cursorElement = element.querySelector('.hero__typewriter-cursor'); // ADIÇÃO: Referência ao cursor
+    this.wordIndex = 0;
+    this.charIndex = 0;
+    this.isDeleting = false;
+    this.typeSpeed = 100;
+    this.deleteSpeed = 50;
+    this.waitTime = 2000;
 
-// Inicialização
-handleHeaderScroll();
+    console.log('Typewriter iniciado com palavras:', this.words); // Debug
+
+    // Inicia o efeito
+    this.type();
+  }
+
+  type() {
+    // Palavra atual
+    const currentWord = this.words[this.wordIndex];
+
+    // Está apagando?
+    if (this.isDeleting) {
+      // Remove um caractere
+      this.textElement.textContent = currentWord.substring(
+        0,
+        this.charIndex - 1
+      );
+      this.charIndex--;
+
+      // Terminou de apagar?
+      if (this.charIndex === 0) {
+        this.isDeleting = false;
+        // Próxima palavra
+        this.wordIndex = (this.wordIndex + 1) % this.words.length;
+        // Pequena pausa antes de começar a digitar
+        setTimeout(() => this.type(), 500);
+        return;
+      }
+    } else {
+      // Adiciona um caractere
+      this.textElement.textContent = currentWord.substring(
+        0,
+        this.charIndex + 1
+      );
+      this.charIndex++;
+
+      // Terminou de digitar?
+      if (this.charIndex === currentWord.length) {
+        this.isDeleting = true;
+        // Pausa antes de começar a apagar
+        setTimeout(() => this.type(), this.waitTime);
+        return;
+      }
+    }
+
+    // Velocidade de digitação
+    const speed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+    setTimeout(() => this.type(), speed);
+  }
+}
+
+// ADIÇÃO: Animações de scroll (fade-in)
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Opcional: parar de observar após animar
+        // observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observar todos elementos com classe fade-in
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+}
+
+// ADIÇÃO: Inicialização geral quando DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar tema
+  initializeTheme();
+
+  // Inicializar header scroll
+  handleHeaderScroll();
+
+  // Inicializar smooth scroll
+  initSmoothScroll();
+
+  // Inicializar typewriter
+  const typewriterElement = document.querySelector('.hero__typewriter');
+  if (typewriterElement) {
+    new Typewriter(typewriterElement);
+  } else {
+    console.log(
+      'Elemento typewriter não encontrado - pode não estar na página home'
+    );
+  }
+
+  // Inicializar animações de scroll
+  initScrollAnimations();
+
+  // ADIÇÃO: Filtros de projetos (se existirem)
+  const filterBtns = document.querySelectorAll('.filter__btn');
+  const projectCards = document.querySelectorAll('.project__card');
+
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Remove active de todos
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        // Adiciona active no clicado
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        // Mostra/esconde projetos
+        projectCards.forEach((card) => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+            card.classList.add('fade-in');
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // ADIÇÃO: Formulário de contato (se existir)
+  const contactForm = document.querySelector('.contact__form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Aqui você pode adicionar lógica para enviar o formulário
+      // Por enquanto, apenas mostra um alerta
+      alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      contactForm.reset();
+    });
+  }
+});
+
+// Log para debug
+console.log('Main.js carregado com sucesso!');

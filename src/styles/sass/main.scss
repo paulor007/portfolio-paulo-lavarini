@@ -18,14 +18,30 @@
 // 4. Components
 @use 'components/buttons';
 
+// 5. Sections
+@use 'section/hero';
+
 // 5. Utilities
 @use 'utilities/helpers';
 
 body {
-  padding-top: rem(80);
   background-color: $color-gray-50;
   color: $color-gray-900;
   font-family: $font-primary;
+  line-height: 1.6;
+
+  [data-theme='dark'] & {
+    background-color: $color-gray-900;
+    color: $color-gray-100;
+  }
+}
+
+body,
+.header,
+.hero {
+  transition:
+    background-color $transition-base,
+    color $transition-base;
 }
 
 h1 {
