@@ -1,0 +1,405 @@
+// -----------------------------------------------------------------------------
+// About Section - ARQUIVO COMPLETO
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.about {
+  padding: $spacing-3xl 0;
+  position: relative;
+  background-color: $color-gray-50;
+
+  @include respond-to('md') {
+    padding: rem(100) 0;
+  }
+
+  // Container
+  .container {
+    @include container;
+  }
+
+  // Header da seção
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @include respond-to('md') {
+      margin-bottom: rem(80);
+    }
+  }
+
+  // Título
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: $color-gray-900;
+    margin-bottom: $spacing-md;
+    position: relative;
+    display: inline-block;
+
+    // Decoração sublinhada
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: rem(60);
+      height: rem(4);
+      background: linear-gradient(90deg, $color-primary, $color-secondary);
+      border-radius: $border-radius-full;
+    }
+  }
+
+  // Subtítulo
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-gray-600;
+    max-width: rem(600);
+    margin: 0 auto;
+
+    @include respond-to('md') {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // Grid do conteúdo
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-3xl;
+    align-items: stretch;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr 2fr;
+      gap: rem(80);
+      align-items: start;
+    }
+  }
+
+  // Área da imagem
+  &__image-wrapper {
+    text-align: center;
+    position: relative;
+
+    @include respond-to('lg') {
+      text-align: left;
+    }
+  }
+
+  // Container da imagem
+  &__image-container {
+    position: relative;
+    display: flex;
+    height: 100%;
+
+    // Decoração atrás da imagem
+    &::before {
+      content: '';
+      position: absolute;
+      top: rem(20);
+      left: rem(20);
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+      border-radius: $border-radius-lg;
+      opacity: 0.1;
+      z-index: -1;
+
+      &::after {
+        display: none;
+      }
+
+      @include respond-to('md') {
+        top: rem(30);
+        left: rem(30);
+      }
+    }
+
+    // Borda decorativa
+    &::after {
+      content: '';
+      position: absolute;
+      top: rem(-10);
+      right: rem(-10);
+      width: rem(80);
+      height: rem(80);
+      border: 3px solid $color-primary;
+      border-radius: $border-radius-lg;
+      opacity: 0.3;
+    }
+  }
+
+  // Imagem
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 20px 40px rgba($color-black, 0.1);
+
+    // Hover effect (opcional)
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    // Tablet
+    @include respond-to('sm') {
+      width: rem(380);
+      height: rem(380);
+    }
+
+    // Desktop
+    @include respond-to('md') {
+      width: rem(450);
+      height: rem(450);
+    }
+
+    // Desktop grande
+    @include respond-to('lg') {
+      width: rem(500);
+      height: rem(500);
+    }
+  }
+
+  // Área de texto
+  &__text {
+    // Introdução
+    &-intro {
+      font-size: $font-size-2xl;
+      font-weight: 700;
+      color: $color-gray-900;
+      margin-bottom: $spacing-lg;
+
+      @include respond-to('md') {
+        font-size: rem(32);
+      }
+
+      // Destaque no nome
+      span {
+        color: $color-primary;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: rem(2);
+          left: 0;
+          width: 100%;
+          height: rem(3);
+          background: $color-primary;
+          opacity: 0.2;
+        }
+      }
+    }
+
+    // Parágrafos
+    &-description {
+      font-size: $font-size-base;
+      line-height: 1.8;
+      color: $color-gray-600;
+      margin-bottom: $spacing-lg;
+
+      @include respond-to('md') {
+        font-size: $font-size-lg;
+      }
+
+      // Destaque em texto
+      strong {
+        color: $color-gray-700;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Informações em lista
+  &__info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+    margin: $spacing-xl 0;
+
+    @include respond-to('sm') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      // Ícone
+      i {
+        color: $color-primary;
+        font-size: rem(20);
+        width: rem(24);
+        flex-shrink: 0;
+      }
+
+      // Texto
+      span {
+        color: $color-gray-700;
+        font-size: $font-size-base;
+
+        strong {
+          font-weight: 600;
+          color: $color-gray-900;
+        }
+      }
+    }
+  }
+
+  // Botões de ação
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-top: $spacing-xl;
+
+    .button {
+      min-width: rem(160);
+
+      @media (max-width: #{$breakpoint-sm}) {
+        width: 100%;
+      }
+    }
+  }
+
+  // Stats/Números
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    margin-top: $spacing-2xl;
+    padding-top: $spacing-2xl;
+    border-top: 1px solid $color-gray-200;
+
+    @include respond-to('sm') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    &-item {
+      text-align: center;
+
+      // Número
+      &-number {
+        font-size: $font-size-3xl;
+        font-weight: 800;
+        color: $color-primary;
+        display: block;
+        margin-bottom: $spacing-xs;
+
+        @include respond-to('md') {
+          font-size: rem(40);
+        }
+      }
+
+      // Label
+      &-label {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+// Animações
+.about {
+  &__image-wrapper,
+  &__text {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  &__image-wrapper {
+    animation-delay: 0.2s;
+  }
+
+  &__text {
+    animation-delay: 0.4s;
+  }
+
+  &__stats {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Tema escuro
+[data-theme='dark'] {
+  .about {
+    background-color: $color-gray-800;
+
+    &__title {
+      color: $color-gray-100;
+    }
+
+    &__subtitle {
+      color: $color-gray-400;
+    }
+
+    &__text {
+      &-intro {
+        color: $color-gray-100;
+      }
+
+      &-description {
+        color: $color-gray-400;
+
+        strong {
+          color: $color-gray-300;
+        }
+      }
+    }
+
+    &__info {
+      &-item {
+        span {
+          color: $color-gray-400;
+
+          strong {
+            color: $color-gray-200;
+          }
+        }
+      }
+    }
+
+    &__stats {
+      border-top-color: $color-gray-700;
+
+      &-item {
+        &-label {
+          color: $color-gray-500;
+        }
+      }
+    }
+  }
+}
+
+// Responsividade
+@media (prefers-reduced-motion: reduce) {
+  .about {
+    &__image-wrapper,
+    &__text,
+    &__stats {
+      animation: none !important;
+      opacity: 1;
+    }
+  }
+}

@@ -354,3 +354,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Log para debug
 console.log('Main.js carregado com sucesso!');
+
+class CounterAnimation {
+  constructor(element, options = {}) {
+    this.element = element;
+    this.target = parseInt(element.dataset.target) || 0;
+    this.suffix = element.dataset.suffix || '';
+    this.prefix = element.dataset.prefix || '';
+    this.duration = options.duration || 2500;
+    this.delay = options.delay || 0;
+    this.once = options.once !== false; // Anima apenas uma vez por padrão
+    this.animated = false;
+  }
+
+  // Diferentes funções de easing
+  static easing = {
+    linear: (t) => t,
+    easeInQuad: (t) => t * t,
+    easeOutQuad: (t) => t * (2 - t),
+    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    easeOutElastic: (t) => {
+      const p = 0.3;
+      return (
+        Math.pow(2, -10 * t) * Math.sin(((t - p / 4) * (2 * Math.PI)) / p) + 1
+      );
+    },
+  };
+
+  animate(easingFunction = CounterAnimation.easing.easeOutQuad) {
+    // Se já foi animado e once é true, não anima novamente
+    if (this.animated && this.once) return;
+
+    const start = performance.now();
+
+    const updateCounter = (currentTime) => {
+      const elapsed = currentTime - start - this.delay;
+
+      if (elapsed < 0) {
+        requestAnimationFrame(updateCounter);
+        return;
+      }
+
+      const progress = Math.min(elapsed / this.duration, 1);
+      const easedProgress = easingFunction(progress);
+      const current = Math.floor(easedProgress * this.target);
+
+      // Atualiza o texto com prefixo e sufixo
+      this.element.textContent = this.prefix + current + this.suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        this.element.textContent = this.prefix + this.target + this.suffix;
+        this.animated = true;
+      }
+    };
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  reset() {
+    this.element.textContent = this.prefix + '0' + this.suffix;
+    this.animated = false;
+  }
+}
+
+// Inicializar contadores
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('.about__stats-item-number');
+  const counterInstances = [];
+
+  counters.forEach((counter, index) => {
+    const instance = new CounterAnimation(counter, {
+      duration: 2000,
+      delay: index * 200, // Delay escalonado
+      once: true,
+    });
+    counterInstances.push(instance);
+  });
+
+  // Observer para iniciar animação
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          counterInstances.forEach((counter) => {
+            counter.animate(CounterAnimation.easing.easeOutQuad);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+    }
+  );
+
+  const statsSection = document.querySelector('.about__stats');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
+});

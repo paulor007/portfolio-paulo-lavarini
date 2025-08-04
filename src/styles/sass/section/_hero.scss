@@ -18,8 +18,28 @@
     padding: rem(120) 0 $spacing-3xl;
   }
 
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-3xl;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-3xl;
+    }
+
+    @include respond-to('xl') {
+      grid-template-columns: 3fr 2fr;
+      gap: $spacing-3xl;
+    }
+  }
+
   // Conteúdo principal
   &__content {
+    order: 1;
     position: relative;
     z-index: 10;
     max-width: rem(800);
@@ -27,6 +47,43 @@
 
     @include respond-to('lg') {
       max-width: rem(900);
+      order: 2;
+    }
+  }
+
+  &__image-area {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideRight 0.8s ease-out 0.4s both;
+
+    @include respond-to('lg') {
+      order: 2;
+    }
+  }
+
+  &__image {
+    width: rem(250);
+    height: rem(250);
+    border-radius: $border-radius-full;
+    object-fit: cover;
+    object-position: left top;
+    box-shadow: 0 20px 40px rgba($color-black, 0.1);
+
+    @include respond-to('md') {
+      width: rem(300);
+      height: rem(300);
+    }
+
+    @include respond-to('lg') {
+      width: rem(350);
+      height: rem(350);
+    }
+
+    @include respond-to('xl') {
+      width: rem(400);
+      height: rem(400);
     }
   }
 
@@ -238,38 +295,6 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-  }
-
-  &__gradient {
-    position: absolute;
-    top: -50%;
-    right: -25%;
-    width: rem(800);
-    height: rem(800);
-    background: radial-gradient(
-      circle,
-      rgba($color-primary, 0.1) 0%,
-      rgba($color-primary, 0.05) 40%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    animation: float 20s ease-in-out infinite;
-  }
-
-  &__pattern {
-    position: absolute;
-    bottom: -10%;
-    left: -10%;
-    width: rem(600);
-    height: rem(600);
-    background-image: radial-gradient(
-      circle,
-      $color-gray-200 1px,
-      transparent 1px
-    );
-    background-size: 20px 20px;
-    opacity: 0.3;
-    animation: float 15s ease-in-out infinite reverse;
   }
 }
 

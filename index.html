@@ -174,99 +174,241 @@
       <!-- Hero Section -->
       <section class="hero" id="home" aria-label="Introdução">
         <div class="container">
-          <div class="hero__greeting" aria-label="Saudação">
-            <span class="hero__greeting-text">Olá, eu sou</span>
-            <span class="hero__greeting-wave" aria-label="Aceno">👋</span>
-          </div>
+          <div class="hero__wrapper">
+            <!-- Coluna do conteúdo -->
+            <div class="hero__content">
+              <div class="hero__greeting" aria-label="Saudação">
+                <span class="hero__greeting-text">Olá, eu sou</span>
+                <span class="hero__greeting-wave" aria-label="Aceno">👋</span>
+              </div>
 
-          <!-- Nome principal -->
-          <h1 class="hero__title">Paulo Lavarini</h1>
-          <span class="hero__title-decoration" aria-hidden="true"></span>
+              <!-- Nome principal -->
+              <h1 class="hero__title">Paulo Lavarini</h1>
+              <span class="hero__title-decoration" aria-hidden="true"></span>
 
-          <!-- Subtítulo com typewriter -->
-          <div class="hero__subtitle">
-            <span class="hero__subtitle-prefix">Desenvolvedor</span>
-            <span class="hero__subtitle-dynamic">
-              <span
-                class="hero__typewriter"
-                data-words='["Full Stack", "Frontend", "Backend", "Web"]'
-              >
-                <span class="hero__typewriter-text">Full Stack</span
-                ><span class="hero__typewriter-cursor" aria-hidden="true"
-                  >|</span
+              <!-- Subtítulo com typewriter -->
+              <div class="hero__subtitle">
+                <span class="hero__subtitle-prefix">Desenvolvedor</span>
+                <span class="hero__subtitle-dynamic">
+                  <span
+                    class="hero__typewriter"
+                    data-words='["Full Stack", "Frontend", "Backend", "Web"]'
+                  >
+                    <span class="hero__typewriter-text">Full Stack</span
+                    ><span class="hero__typewriter-cursor" aria-hidden="true"
+                      >|</span
+                    >
+                  </span>
+                </span>
+              </div>
+
+              <!-- Descrição -->
+              <p class="hero__description">
+                Sou apaixonado por tecnologia e desenvolvimento de soluções
+                digitais personalizadas. Com formação em Sistemas de Informação,
+                atuo na criação de interfaces web, automações e projetos com
+                <strong>Python</strong>, sempre comprometido com resultados
+                práticos, código limpo e entrega de valor. Estou constantemente
+                evoluindo e expandindo meus conhecimentos,
+                <strong>especialmente em Python</strong>, para abraçar desafios
+                além do desenvolvimento web, como automações e análise de dados.
+                Estou aberto a novos desafios e oportunidades para crescer
+                profissionalmente e contribuir para a inovação.
+              </p>
+
+              <!-- Botões de ação -->
+              <div class="hero__actions">
+                <a href="#projects" class="button button--primary button--large"
+                  ><ion-icon name="eye" aria-hidden="true"></ion-icon>
+                  <span>Ver Projetos</span></a
                 >
-              </span>
-            </span>
+                <a href="#contact" class="button button--outline button--large">
+                  <ion-icon name="send-outline" aria-hidden="true"></ion-icon>
+                  <span>Entre em Contato</span>
+                </a>
+              </div>
+
+              <!-- Links sociais -->
+              <div class="hero__social">
+                <a
+                  href="https://github.com/seu-usuario"
+                  class="hero__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <ion-icon name="logo-github"></ion-icon>
+                </a>
+                <a
+                  href="https://linkedin.com/in/seu-usuario"
+                  class="hero__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+                <a
+                  href="mailto:seu-email@gmail.com"
+                  class="hero__social-link"
+                  aria-label="Email"
+                >
+                  <ion-icon name="mail-outline"></ion-icon>
+                </a>
+              </div>
+            </div>
+
+            <!-- Coluna da imagem -->
+            <div class="hero__image-area">
+              <img
+                src="src/assets/images/profile/profile-photo.jpg"
+                alt="Paulo Lavarini - Desenvolvedor Web"
+                class="hero__image"
+              />
+            </div>
           </div>
 
-          <!-- Descrição -->
-          <p class="hero__description">
-            Sou apaixonado por tecnologia e desenvolvimento de soluções digitais
-            personalizadas. Com formação em Sistemas de Informação, atuo na
-            criação de interfaces web, automações e projetos com
-            <strong>Python</strong>, sempre comprometido com resultados
-            práticos, código limpo e entrega de valor. Estou constantemente
-            evoluindo e expandindo meus conhecimentos,
-            <strong>especialmente em Python</strong>, para abraçar desafios além
-            do desenvolvimento web, como automações e análise de dados. Estou
-            aberto a novos desafios e oportunidades para crescer
-            profissionalmente e contribuir para a inovação.
-          </p>
-
-          <!-- Botões de ação -->
-          <div class="hero__actions">
-            <a href="#projects" class="button button--primary button--large"
-              ><ion-icon name="eye" aria-hidden="true"></ion-icon>
-              <span>Ver Projetos</span></a
-            >
-            <a href="#contact" class="button button--outline button--large">
-              <ion-icon name="send-outline" aria-hidden="true"></ion-icon>
-              <span>Entre em Contato</span>
-            </a>
-          </div>
-
-          <!-- Links sociais -->
-          <div class="hero__social">
-            <a
-              href="https://github.com/seu-usuario"
-              class="hero__social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-            <a
-              href="https://linkedin.com/in/seu-usuario"
-              class="hero__social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-            <a
-              href="mailto:seu-email@gmail.com"
-              class="hero__social-link"
-              aria-label="Email"
-            >
-              <ion-icon name="mail-outline"></ion-icon>
-            </a>
+          <!-- Indicador de scroll -->
+          <div class="hero__scroll-indicator" aria-label="Role para baixo">
+            <span class="hero__scroll-text">Role para baixo</span>
+            <div class="hero__scroll-icon">
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
           </div>
         </div>
+      </section>
 
-        <!-- Indicador de scroll -->
-        <div class="hero__scroll-indicator" aria-label="Role para baixo">
-          <span class="hero__scroll-text">Role para baixo</span>
-          <div class="hero__scroll-icon">
-            <ion-icon name="chevron-down-outline"></ion-icon>
+      <!-- About Section -->
+      <section class="about" id="about" aria-label="Sobre mim">
+        <div class="container">
+          <!-- Header da seção -->
+          <div class="about__header">
+            <h2 class="about__title">Sobre Mim</h2>
+            <p class="about__subtitle">
+              Conheça minha trajetória e paixão pelo desenvolvimento
+            </p>
           </div>
-        </div>
 
-        <!-- Background decorativo -->
-        <div class="hero__background" aria-hidden="true">
-          <div class="hero__gradient"></div>
-          <div class="hero__pattern"></div>
+          <!-- Conteúdo principal -->
+          <div class="about__content">
+            <!-- Imagem -->
+            <div class="about__imagem-wrapper">
+              <div class="about__imagem-container">
+                <img
+                  src="src/assets/images/profile/photo-about.jpg"
+                  alt="Paulo Lavarini - Desenvolvedor"
+                  class="about__image"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <!-- Texto -->
+            <div class="about__text">
+              <h3 class="about__text-intro">
+                Olá! Sou <span>Paulo Lavarini</span>
+              </h3>
+
+              <p class="about__text-description">
+                Aos 43 anos, decidi transformar minha paixão por tecnologia em
+                uma nova carreira.
+                <strong>Formado em Sistemas de Informação</strong>, trago uma
+                base sólida e uma perspectiva madura para o desenvolvimento.
+              </p>
+
+              <p class="about__text-description">
+                Minha jornada começou com HTML e CSS, evoluiu para JavaScript e
+                seus frameworks, e em seguida me aprofundei no universo do PHP e
+                Java para compreender ainda mais a lógica e o funcionamento de
+                aplicações robustas. Atualmente, estou explorando todo o
+                potencial do Python junto ao PostgreSQL, ampliando minhas
+                habilidades tanto em análise de dados quanto no desenvolvimento
+                de soluções completas para backend. Cada linha de código é uma
+                oportunidade de criar algo significativo e impactante.
+              </p>
+
+              <!-- Informações rápidas -->
+              <div class="about__info">
+                <div class="about__info-item">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span><strong>Formação:</strong> Sistema de Informação</span>
+                </div>
+
+                <div class="about__info-item">
+                  <i class="fas fa-birthday-cake"></i>
+                  <span><strong>Idade:</strong> 43 anos</span>
+                </div>
+
+                <div class="about__info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span><strong>Localização:</strong> Brasil</span>
+                </div>
+
+                <div class="about__info-item">
+                  <i class="fas fa-briefcase"></i>
+                  <span><strong>Status:</strong> Disponível</span>
+                </div>
+              </div>
+
+              <!-- Botões -->
+              <div class="about__ation">
+                <a
+                  href="src/assets/document/professional_CV.pdf"
+                  class="button button--primary"
+                  download
+                  ><i class="fas fa-download"></i> <span>Download CV</span></a
+                >
+
+                <a href="#contact" class="button button--outline">
+                  <i class="fas fa-comment"></i>
+                  <span>Vamos Conversar</span>
+                </a>
+              </div>
+
+              <!-- Estatisticas -->
+              <div class="about__stats">
+                <div class="about__stats-item">
+                  <span
+                    class="about__stats-item-number"
+                    data-target="1"
+                    data-suffix="+"
+                    >0</span
+                  >
+                  <span class="about__stats-item-label">Anos de Estudo</span>
+                </div>
+
+                <div class="about__stats-item">
+                  <span
+                    class="about__stats-item-number"
+                    data-target="6"
+                    data-suffix="+"
+                    >0</span
+                  >
+                  <span class="about__stats-item-label">Projetos</span>
+                </div>
+
+                <div class="about__stats-item">
+                  <span
+                    class="about__stats-item-number"
+                    data-target="5"
+                    data-suffix="+"
+                    >0</span
+                  >
+                  <span class="about__stats-item-label">Tecnologias</span>
+                </div>
+
+                <div class="about__stats-item">
+                  <span
+                    class="about__stats-item-number"
+                    data-target="100"
+                    data-suffix="%"
+                    >0</span
+                  >
+                  <span class="about__stats-item-label">Dedicação</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
