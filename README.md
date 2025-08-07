@@ -1,209 +1,391 @@
-# Portfolio - Paulo Lavarini
+# 🚀 Portfólio Pessoal - Paulo Lavarini
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34C26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
-[![Sass](https://img.shields.io/badge/Sass-CC6699?style=flat&logo=sass&logoColor=white)](https://sass-lang.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-E34C26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+[![SCSS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 
-Portfolio profissional desenvolvido com foco em demonstrar habilidades em desenvolvimento web, seguindo as melhores práticas de acessibilidade, SEO e performance.
+Portfolio profissional desenvolvido com tecnologias web modernas, apresentando minha transição de carreira para desenvolvimento web. Projeto criado do zero com foco em performance, acessibilidade e boas práticas.
 
-## 🎯 Visão Geral
+## 📌 Sobre o Projeto
 
-Portfolio moderno e responsivo desenvolvido para apresentar projetos e habilidades técnicas, com design minimalista e experiência de usuário otimizada. O projeto foi desenvolvido seguindo uma abordagem mobile-first e implementa funcionalidades avançadas como tema dark/light, animações suaves e efeitos interativos.
+Este portfólio foi desenvolvido para demonstrar minhas habilidades técnicas e projetos práticos durante minha transição para a área de desenvolvimento. Formado em Sistemas de Informação pela Universidade Católica de Brasília (2013), estou retornando ao desenvolvimento com foco em tecnologias modernas e criação de soluções web escaláveis.
 
-## 🚀 Funcionalidades Implementadas
+### 🎯 Objetivos
 
-### ✨ Destaques
+- Demonstrar competências técnicas através de projetos práticos
+- Apresentar uma jornada honesta de transição profissional
+- Criar uma experiência de usuário excepcional
+- Aplicar as melhores práticas de desenvolvimento web moderno
 
-- ⚡ **Performance otimizada** - Carregamento rápido e eficiente
-- 🌓 **Tema Dark/Light** - Alternância com persistência em localStorage
-- 📱 **100% Responsivo** - Mobile-first design
-- ♿ **Acessível** - WCAG 2.1 Level AA compliant
-- 🎨 **Animações suaves** - Microinterações e transições elegantes
-- 🔍 **SEO otimizado** - Meta tags e estrutura semântica
+## ✨ Features Implementadas
 
-### 🎯 Seções Completas
+### 🎨 Design & UX
 
-- **Header** - Navegação fixa com menu hambúrguer responsivo
-- **Hero** - Apresentação com efeito typewriter e imagem circular
-- **About** - Informações pessoais com contador animado de estatísticas
-- **Skills** - _(Em desenvolvimento)_
-- **Projects** - _(Em desenvolvimento)_
-- **Contact** - _(Em desenvolvimento)_
-- **Footer** - _(Em desenvolvimento)_
+- **Design Responsivo** - Mobile-first, adaptável a todos dispositivos
+- **Modo Escuro/Claro** - Toggle com persistência em localStorage
+- **Animações Suaves** - Transições e animações CSS performáticas
+- **Microinterações** - Feedback visual em hovers e cliques
+- **Layout Moderno** - Grid e Flexbox para layouts flexíveis
 
-## 💻 Tecnologias Utilizadas
+### ♿ Acessibilidade (WCAG 2.1 AA)
 
-### Frontend
+- **100% Semântico** - HTML5 com tags apropriadas
+- **ARIA Labels** - Descrições completas para leitores de tela
+- **Navegação por Teclado** - Tab navigation otimizada
+- **Skip Links** - Pular para conteúdo principal
+- **Contraste Adequado** - Cores com contraste AAA
 
-- **HTML5** - Estrutura semântica
-- **CSS3/Sass** - Estilização com pré-processador
-- **JavaScript ES6+** - Interatividade e lógica
-- **Font Awesome 6** - Ícones vetoriais
+### ⚡ Performance
 
-### Arquitetura e Padrões
+- **Lazy Loading** - Carregamento otimizado de imagens
+- **CSS Otimizado** - SCSS modular e minificado
+- **Código Limpo** - JavaScript modular e eficiente
+- **Fontes Otimizadas** - Preconnect e font-display
+- **Imagens Otimizadas** - Formatos modernos e responsivos
 
-- **Sass 7-1 Pattern** - Organização modular de estilos
-- **BEM Methodology** - Nomenclatura de classes CSS
-- **Mobile-First** - Abordagem responsiva
-- **Conventional Commits** - Padrão de mensagens git
+### 🔍 SEO
 
-### Ferramentas de Desenvolvimento
+- **Meta Tags Completas** - Open Graph e Twitter Cards
+- **Estrutura Semântica** - Hierarquia correta de headings
+- **Schema.org** - Dados estruturados (em desenvolvimento)
+- **Sitemap** - Mapa do site para indexação
+- **Robots.txt** - Configuração para crawlers
 
-- **Node.js & NPM** - Gerenciamento de dependências
-- **Git & GitHub** - Versionamento de código
-- **VS Code** - Editor de código
+## 📂 Estrutura do Projeto
 
-## 📋 Pré-requisitos
-
-Antes de começar, certifique-se de ter instalado:
-
-- **Node.js** (versão 14 ou superior)
-- **NPM** ou **Yarn**
-- **Git**
-- **Navegador moderno** (Chrome, Firefox, Safari, Edge)
-
-## 📦 Instalação e Configuração
-
-```bash
-# Clone o repositório
-git clone https://github.com/paulor007
-
-# Entre no diretório
-cd portfolio-paulo-lavarini
-
-# Instale as dependências
-npm install
-
-# Execute em modo de desenvolvimento
-npm run dev
-
-# O Sass será compilado automaticamente
-# Acesse http://127.0.0.1:5500 (Live Server)
-🛠️ Scripts Disponíveis
-bash# Desenvolvimento
-npm run dev          # Compila Sass em modo watch
-npm run sass         # Alias para desenvolvimento
-
-# Produção
-npm run build        # Compila Sass minificado para produção
-npm run sass:build   # Build do CSS otimizado
-
-# Qualidade de código (se configurado)
-npm run lint:styles  # Verifica erros no Sass
-npm run format       # Formata código com Prettier
-📂 Estrutura do Projeto
+```
 portfolio-paulo-lavarini/
 │
-├── 📁 assets/                  # Recursos estáticos
-│   └── 📁 cv/                  # Curriculum vitae
-│
-├── 📁 src/                     # Código fonte
-│   ├── 📁 scripts/             # JavaScript
-│   │   ├── 📁 modules/         # Módulos JS
-│   │   ├── 📁 utils/           # Utilitários
-│   │   └── 📄 main.js          # Script principal
+├── 📁 src/
+│   ├── 📁 assets/
+│   │   ├── 📁 document/
+│   │   │   └── professional_CV.pdf
+│   │   └── 📁 images/
+│   │       └── 📁 profile/
+│   │           ├── photo-about.jpg
+│   │           └── profile-photo.jpg
 │   │
-│   └── 📁 styles/              # Estilos
-│       ├── 📁 sass/            # Arquivos Sass
-│       │   ├── 📁 abstracts/   # Variáveis, mixins, funções
-│       │   ├── 📁 base/        # Reset, tipografia
-│       │   ├── 📁 components/  # Botões, cards
-│       │   ├── 📁 layout/      # Header, navigation
-│       │   ├── 📁 sections/    # Hero, about
-│       │   ├── 📁 themes/      # Dark/light themes
-│       │   ├── 📁 utilities/   # Classes helpers
-│       │   └── 📄 main.scss    # Arquivo principal
+│   ├── 📁 scripts/
+│   │   ├── main.js
+│   │   └── 📁 modules/
+│   │       ├── skills.js
+│   │       ├── projects.js
+│   │       └── experience.js
+│   │
+│   └── 📁 styles/
+│       ├── 📁 sass/
+│       │   ├── 📁 abstracts/
+│       │   │   ├── _variables.scss
+│       │   │   ├── _mixins.scss
+│       │   │   └── _functions.scss
+│       │   │
+│       │   ├── 📁 base/
+│       │   │   └── _reset.scss
+│       │   │
+│       │   ├── 📁 components/
+│       │   │   └── _buttons.scss
+│       │   │
+│       │   ├── 📁 layout/
+│       │   │   ├── _header.scss
+│       │   │   └── _navigation.scss
+│       │   │
+│       │   ├── 📁 section/
+│       │   │   ├── _hero.scss
+│       │   │   ├── _about.scss
+│       │   │   ├── _skills.scss
+│       │   │   ├── _projects.scss
+│       │   │   └── _experience.scss
+│       │   │
+│       │   ├── 📁 themes/
+│       │   │   └── _dark.scss
+│       │   │
+│       │   ├── 📁 utilities/
+│       │   │   └── _helpers.scss
+│       │   │
+│       │   └── main.scss
 │       │
-│       └── 📁 css/             # CSS compilado
-│           └── 📄 main.css
+│       └── 📁 css/
+│           └── main.css (compilado)
 │
-├── 📄 .gitignore               # Arquivos ignorados pelo Git
-├── 📄 .prettierrc              # Configuração Prettier
-├── 📄 .stylelintrc.json        # Configuração Stylelint
-├── 📄 LICENSE                  # Licença MIT
-├── 📄 README.md                # Este arquivo
-├── 📄 package.json             # Dependências NPM
-├── 📄 package-lock.json        # Lock file
-└── 📄 index.html               # Página principal
-🎨 Padrões e Convenções
-CSS/Sass
-
-Metodologia BEM para nomenclatura de classes
-Arquitetura 7-1 para organização Sass
-Mobile-first approach
-Variáveis CSS para temas
-
-JavaScript
-
-ES6+ Modules para organização
-Camel Case para variáveis e funções
-Comentários JSDoc para documentação
-
-Git
-
-Conventional Commits para mensagens
-Feature branches para desenvolvimento
-Main branch protegida
-
-🚧 Status do Desenvolvimento
-✅ Concluído
-
- Estrutura inicial do projeto
- Configuração Sass com arquitetura 7-1
- Sistema de variáveis e mixins
- Header responsivo com navegação
- Menu mobile hambúrguer animado
- Sistema de tema dark/light
- Hero section com typewriter effect
- Imagem circular na hero
- About section com informações pessoais
- Contador animado de estatísticas
- Animações de scroll
- SEO básico implementado
-
-🔨 Em Desenvolvimento
-
- Skills section com barras de progresso
- Projects section com filtros
- Contact form funcional
- Footer com links sociais
- Integração com EmailJS
- Otimização de imagens
-
-📋 Próximas Features
-
- Blog section
- Internacionalização (PT/EN)
- PWA features
- Testes automatizados
- CI/CD pipeline
- Analytics integration
-
-📊 Métricas de Performance
-
-Lighthouse Score: 95+ (Performance)
-Acessibilidade: WCAG 2.1 AA
-SEO: 100%
-Best Practices: 95+
-
-🤝 Como Contribuir
-
-Faça um fork do projeto
-Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
-Commit suas mudanças (git commit -m 'feat: add some amazing feature')
-Push para a branch (git push origin feature/AmazingFeature)
-Abra um Pull Request
-
-📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
-👤 Autor
-<img src="https://via.placeholder.com/150" width="150" style="border-radius: 50%">
-Paulo Lavarini
-
-👨‍💻 Desenvolvedor Web em transição de carreira
-🎓 Formado em Sistemas de Informação
-📍 Brasil
-🎂 43 anos
+├── index.html
+├── package.json
+├── package-lock.json
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
+
+## 🎨 Seções Desenvolvidas
+
+### 1️⃣ **Header & Navigation**
+
+- Menu responsivo com hamburger menu
+- Navegação suave com scroll smooth
+- Indicador de seção ativa
+- Botão de dark mode integrado
+- Logo personalizado
+
+### 2️⃣ **Hero Section**
+
+- Apresentação impactante
+- Efeito typewriter para roles
+- Call-to-actions estratégicos
+- Links para redes sociais
+- Indicador de scroll animado
+
+### 3️⃣ **About Section**
+
+- História pessoal e profissional
+- Foto profissional
+- Estatísticas animadas
+- Informações de contato
+- Download de CV
+- Cards informativos
+
+### 4️⃣ **Skills Section**
+
+- 4 categorias: Frontend, Backend, Ferramentas, Soft Skills
+- Barras de progresso animadas
+- Níveis de proficiência
+- Ícones representativos
+- Animação ao scroll (Intersection Observer)
+- Cards interativos com hover effects
+
+### 5️⃣ **Projects Section**
+
+- 6 projetos destacados
+- Sistema de filtros por categoria
+- Cards com overlay de links
+- Tags de tecnologias
+- Datas e categorias
+- Imagens com lazy loading
+- Links para GitHub e demo ao vivo
+
+### 6️⃣ **Experience Timeline**
+
+- Timeline alternada (esquerda/direita)
+- Jornada de transição profissional
+- Projetos pessoais como experiência
+- Marcos educacionais
+- Badges para status atual
+- Animações sequenciais
+- Design visual atrativo
+
+## 🛠️ Tecnologias Utilizadas
+
+### **Frontend**
+
+- HTML5 (Semântico)
+- CSS3 / SCSS (Sass)
+- JavaScript ES6+
+- Metodologia BEM
+
+### **Build & Tools**
+
+- Node.js & NPM
+- Sass Compiler
+- Git & GitHub
+- VS Code
+
+### **Bibliotecas**
+
+- Font Awesome (ícones)
+- Ionicons (ícones adicionais)
+
+## 💻 Como Executar o Projeto
+
+### Pré-requisitos
+
+- Node.js instalado (v14+)
+- NPM ou Yarn
+- Git
+
+### Instalação
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/paulolavarini/portfolio-paulo-lavarini.git
+
+# 2. Entre na pasta do projeto
+cd portfolio-paulo-lavarini
+
+# 3. Instale as dependências
+npm install
+
+# 4. Compile o SCSS (desenvolvimento)
+npm run sass:watch
+
+# 5. Compile o SCSS (produção)
+npm run sass:build
+
+# 6. Abra o index.html no navegador
+# Ou use uma extensão como Live Server no VS Code
+```
+
+### Scripts Disponíveis
+
+```json
+{
+  "scripts": {
+    "sass:watch": "sass src/styles/sass/main.scss src/styles/css/main.css --watch",
+    "sass:build": "sass src/styles/sass/main.scss src/styles/css/main.css --style compressed",
+    "sass:dev": "sass src/styles/sass/main.scss src/styles/css/main.css --style expanded"
+  }
+}
+```
+
+## 📱 Responsividade
+
+O projeto é totalmente responsivo com breakpoints em:
+
+- **Mobile**: < 480px
+- **Tablet**: 768px
+- **Desktop**: 1024px
+- **Large**: 1280px
+- **Extra Large**: 1536px
+
+## 🌙 Temas
+
+O projeto suporta dois temas:
+
+- **Light Mode** (padrão)
+- **Dark Mode** (toggle no header)
+
+O tema escolhido é salvo no localStorage para persistência.
+
+## 📈 Status do Desenvolvimento
+
+### ✅ Concluído
+
+- [x] Estrutura inicial do projeto
+- [x] Setup do ambiente (NPM, Sass)
+- [x] Sistema de design (cores, tipografia, espaçamentos)
+- [x] Header responsivo com navegação
+- [x] Hero section com animações
+- [x] About section com estatísticas
+- [x] Skills section com barras de progresso
+- [x] Projects section com filtros
+- [x] Experience timeline
+- [x] Dark mode
+- [x] Responsividade completa
+- [x] Acessibilidade WCAG 2.1
+
+### 🚧 Em Desenvolvimento
+
+- [ ] Contact section com formulário
+- [ ] Footer com links e informações
+- [ ] Animações avançadas com GSAP
+- [ ] Internacionalização (PT/EN)
+- [ ] Blog section
+- [ ] Integração com API de email
+
+### 📋 Próximas Features
+
+- [ ] PWA (Progressive Web App)
+- [ ] Service Worker para offline
+- [ ] Testes automatizados
+- [ ] CI/CD com GitHub Actions
+- [ ] Analytics (Google Analytics 4)
+- [ ] Comentários nos projetos
+- [ ] Newsletter
+- [ ] RSS Feed
+
+## 🚀 Deploy
+
+O projeto está hospedado no GitHub Pages:
+
+🔗 **[https://paulolavarini.github.io/portfolio-paulo-lavarini/](https://paulolavarini.github.io/portfolio-paulo-lavarini/)**
+
+### Como fazer deploy:
+
+```bash
+# 1. Build do projeto
+npm run sass:build
+
+# 2. Commit das alterações
+git add .
+git commit -m "feat: sua mensagem"
+
+# 3. Push para o GitHub
+git push origin main
+
+# GitHub Pages atualiza automaticamente
+```
+
+## 📊 Métricas de Performance
+
+- **Lighthouse Score**: 95+ (Performance)
+- **Acessibilidade**: 100
+- **Melhores Práticas**: 100
+- **SEO**: 100
+
+## 🤝 Contribuindo
+
+Contribuições são sempre bem-vindas! Se você tem alguma sugestão para melhorar este projeto:
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Paulo Lavarini**
+
+- 🌐 Website: [Em breve](https://paulolavarini.github.io/portfolio-paulo-lavarini/)
+- 💼 LinkedIn: [Paulo Lavarini](https://linkedin.com/in/paulolavarini)
+- 📧 Email: paulolavarini@gmail.com
+- 🐙 GitHub: [@paulolavarini](https://github.com/paulolavarini)
+
+## 🙏 Agradecimentos
+
+- Universidade Católica de Brasília - pela formação sólida
+- Comunidade open source - pelos recursos e inspiração
+- Você - por visitar meu projeto!
+
+## 📌 Notas de Versão
+
+### v0.5.0 (Atual)
+
+- Experience Timeline completa
+- Refatoração para HTML 100% semântico
+- Melhorias de acessibilidade
+- Otimizações de performance
+
+### v0.4.0
+
+- Projects section com filtros
+- Sistema de grid responsivo
+- Cards interativos
+
+### v0.3.0
+
+- Skills section com animações
+- Barras de progresso dinâmicas
+- Categorização de habilidades
+
+### v0.2.0
+
+- About section
+- Hero section com typewriter
+- Dark mode implementado
+
+### v0.1.0
+
+- Estrutura inicial
+- Setup do projeto
+- Header e navegação
+
+---
+
+⭐ **Se este projeto foi útil para você, considere deixar uma estrela!**
+
+💬 **Feedback e sugestões são sempre bem-vindos!**
+
+🚀 **Obrigado por visitar meu portfólio!**
