@@ -112,6 +112,12 @@
                 <span class="nav__link-text">Projetos</span>
               </a>
             </li>
+            <!-- Adicionando link para Experience -->
+            <li class="nav__item" role="none">
+              <a href="#experience" class="nav__link" role="menuitem">
+                <span class="nav__link-text">Experiência</span>
+              </a>
+            </li>
             <li class="nav__item" role="none">
               <a href="#contact" class="nav__link" role="menuitem">
                 <span class="nav__link-text">Contato</span>
@@ -172,22 +178,23 @@
     <!-- Conteúdo Principal -->
     <main id="main-content">
       <!-- Hero Section -->
-      <section class="hero" id="home" aria-label="Introdução">
+      <section class="hero" id="home" aria-labelledby="hero-title">
         <div class="container">
           <div class="hero__wrapper">
             <!-- Coluna do conteúdo -->
             <div class="hero__content">
-              <div class="hero__greeting" aria-label="Saudação">
+              <!-- Usando <p> para saudação ao invés de div -->
+              <p class="hero__greeting" aria-label="Saudação">
                 <span class="hero__greeting-text">Olá, eu sou</span>
                 <span class="hero__greeting-wave" aria-label="Aceno">👋</span>
-              </div>
+              </p>
 
-              <!-- Nome principal -->
-              <h1 class="hero__title">Paulo Lavarini</h1>
+              <!-- Nome principal com ID para aria-labelledby -->
+              <h1 class="hero__title" id="hero-title">Paulo Lavarini</h1>
               <span class="hero__title-decoration" aria-hidden="true"></span>
 
-              <!-- Subtítulo com typewriter -->
-              <div class="hero__subtitle">
+              <!-- Subtítulo com typewriter - usando <p> com role -->
+              <p class="hero__subtitle" role="status" aria-live="polite">
                 <span class="hero__subtitle-prefix">Desenvolvedor</span>
                 <span class="hero__subtitle-dynamic">
                   <span
@@ -200,9 +207,9 @@
                     >
                   </span>
                 </span>
-              </div>
+              </p>
 
-              <!-- Descrição -->
+              <!-- Descrição mantida -->
               <p class="hero__description">
                 Sou apaixonado por tecnologia e desenvolvimento de soluções
                 digitais personalizadas. Com formação em Sistemas de Informação,
@@ -228,8 +235,8 @@
                 </a>
               </div>
 
-              <!-- Links sociais -->
-              <div class="hero__social">
+              <!-- Links sociais com nav -->
+              <nav class="hero__social" aria-label="Redes sociais">
                 <a
                   href="https://github.com/seu-usuario"
                   class="hero__social-link"
@@ -255,56 +262,63 @@
                 >
                   <ion-icon name="mail-outline"></ion-icon>
                 </a>
-              </div>
+              </nav>
             </div>
 
-            <!-- Coluna da imagem -->
-            <div class="hero__image-area">
+            <!-- Coluna da imagem com figure -->
+            <figure class="hero__image-area">
               <img
                 src="src/assets/images/profile/profile-photo.jpg"
                 alt="Paulo Lavarini - Desenvolvedor Web"
                 class="hero__image"
+                loading="lazy"
+                width="500"
+                height="500"
               />
-            </div>
+            </figure>
           </div>
 
-          <!-- Indicador de scroll -->
-          <div class="hero__scroll-indicator" aria-label="Role para baixo">
+          <!-- Indicador de scroll com button -->
+          <button
+            class="hero__scroll-indicator"
+            aria-label="Role para baixo"
+            onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })"
+          >
             <span class="hero__scroll-text">Role para baixo</span>
-            <div class="hero__scroll-icon">
-              <ion-icon name="chevron-down-outline"></ion-icon>
-            </div>
-          </div>
+            <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>
+          </button>
         </div>
       </section>
 
       <!-- About Section -->
-      <section class="about" id="about" aria-label="Sobre mim">
+      <section class="about" id="about" aria-labelledby="about-title">
         <div class="container">
           <!-- Header da seção -->
-          <div class="about__header">
-            <h2 class="about__title">Sobre Mim</h2>
+          <header class="about__header">
+            <h2 class="about__title" id="about-title">Sobre Mim</h2>
             <p class="about__subtitle">
               Conheça minha trajetória e paixão pelo desenvolvimento
             </p>
-          </div>
+          </header>
 
           <!-- Conteúdo principal -->
           <div class="about__content">
-            <!-- Imagem -->
-            <div class="about__imagem-wrapper">
+            <!-- Imagem com figure -->
+            <figure class="about__imagem-wrapper">
               <div class="about__imagem-container">
                 <img
                   src="src/assets/images/profile/photo-about.jpg"
                   alt="Paulo Lavarini - Desenvolvedor"
                   class="about__image"
                   loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
-            </div>
+            </figure>
 
-            <!-- Texto -->
-            <div class="about__text">
+            <!-- Texto com article -->
+            <article class="about__text">
               <h3 class="about__text-intro">
                 Olá! Sou <span>Paulo Lavarini</span>
               </h3>
@@ -327,47 +341,58 @@
                 oportunidade de criar algo significativo e impactante.
               </p>
 
-              <!-- Informações rápidas -->
-              <div class="about__info">
+              <!-- Informações rápidas com dl -->
+              <dl class="about__info">
                 <div class="about__info-item">
-                  <i class="fas fa-graduation-cap"></i>
-                  <span><strong>Formação:</strong> Sistema de Informação</span>
+                  <dd>
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <span
+                      ><strong>Formação:</strong> Sistema de Informação</span
+                    >
+                  </dd>
                 </div>
 
                 <div class="about__info-item">
-                  <i class="fas fa-birthday-cake"></i>
-                  <span><strong>Idade:</strong> 43 anos</span>
+                  <dd>
+                    <i class="fas fa-birthday-cake" aria-hidden="true"></i>
+                    <span><strong>Idade:</strong> 43 anos</span>
+                  </dd>
                 </div>
 
                 <div class="about__info-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span><strong>Localização:</strong> Brasil</span>
+                  <dd>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <span><strong>Localização:</strong> Brasil</span>
+                  </dd>
                 </div>
 
                 <div class="about__info-item">
-                  <i class="fas fa-briefcase"></i>
-                  <span><strong>Status:</strong> Disponível</span>
+                  <dd>
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    <span><strong>Status:</strong> Disponível</span>
+                  </dd>
                 </div>
-              </div>
+              </dl>
 
               <!-- Botões -->
-              <div class="about__ation">
+              <div class="about__action">
                 <a
                   href="src/assets/document/professional_CV.pdf"
                   class="button button--primary"
                   download
-                  ><i class="fas fa-download"></i> <span>Download CV</span></a
+                  ><i class="fas fa-download" aria-hidden="true"></i>
+                  <span>Download CV</span></a
                 >
 
                 <a href="#contact" class="button button--outline">
-                  <i class="fas fa-comment"></i>
+                  <i class="fas fa-comment" aria-hidden="true"></i>
                   <span>Vamos Conversar</span>
                 </a>
               </div>
 
-              <!-- Estatisticas -->
-              <div class="about__stats">
-                <div class="about__stats-item">
+              <!-- Estatisticas com section -->
+              <section class="about__stats" aria-label="Estatísticas">
+                <article class="about__stats-item">
                   <span
                     class="about__stats-item-number"
                     data-target="1"
@@ -375,9 +400,9 @@
                     >0</span
                   >
                   <span class="about__stats-item-label">Anos de Estudo</span>
-                </div>
+                </article>
 
-                <div class="about__stats-item">
+                <article class="about__stats-item">
                   <span
                     class="about__stats-item-number"
                     data-target="6"
@@ -385,9 +410,9 @@
                     >0</span
                   >
                   <span class="about__stats-item-label">Projetos</span>
-                </div>
+                </article>
 
-                <div class="about__stats-item">
+                <article class="about__stats-item">
                   <span
                     class="about__stats-item-number"
                     data-target="5"
@@ -395,9 +420,9 @@
                     >0</span
                   >
                   <span class="about__stats-item-label">Tecnologias</span>
-                </div>
+                </article>
 
-                <div class="about__stats-item">
+                <article class="about__stats-item">
                   <span
                     class="about__stats-item-number"
                     data-target="100"
@@ -405,9 +430,1344 @@
                     >0</span
                   >
                   <span class="about__stats-item-label">Dedicação</span>
+                </article>
+              </section>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section class="skills" id="skills" aria-labelledby="skills-title">
+        <div class="container">
+          <!-- Header da seção -->
+          <header class="skills__header">
+            <h2 class="skills__title" id="skills-title">Habilidades</h2>
+            <p class="skills__subtitle">
+              Tecnologias e ferramentas que domino para criar soluções modernas
+            </p>
+          </header>
+
+          <!-- Grid de categorias -->
+          <div class="skills__grid">
+            <!-- Frontend -->
+            <article class="skills__category" aria-labelledby="frontend-title">
+              <header class="skills__category-header">
+                <div class="skills__category-icon" aria-hidden="true">
+                  <i class="fas fa-laptop-code"></i>
                 </div>
+                <h3 class="skills__category-title" id="frontend-title">
+                  Frontend
+                </h3>
+              </header>
+
+              <div class="skills__list" role="list">
+                <!-- HTML5 -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-html5" aria-hidden="true"></i>
+                      HTML5
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="90"
+                      data-suffix="%"
+                      aria-label="90 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="90"></div>
+                  </div>
+                  <p class="skills__item-level">Avançado</p>
+                </article>
+
+                <!-- CSS3 / Sass -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-css3-alt" aria-hidden="true"></i>
+                      CSS3 / Sass
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="85"
+                      data-suffix="%"
+                      aria-label="85 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="85"></div>
+                  </div>
+                  <p class="skills__item-level">Avançado</p>
+                </article>
+
+                <!-- JavaScript ES6+ -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-js" aria-hidden="true"></i>
+                      JavaScript ES6+
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="75"
+                      data-suffix="%"
+                      aria-label="75 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="75"></div>
+                  </div>
+                  <p class="skills__item-level">Intermediário</p>
+                </article>
+
+                <!-- React.js -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-react" aria-hidden="true"></i>
+                      React.js
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="60"
+                      data-suffix="%"
+                      aria-label="60 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="60"></div>
+                  </div>
+                  <p class="skills__item-level">Intermediário</p>
+                </article>
               </div>
-            </div>
+            </article>
+
+            <!-- Backend Category -->
+            <article class="skills__category" aria-labelledby="backend-title">
+              <header class="skills__category-header">
+                <div class="skills__category-icon" aria-hidden="true">
+                  <i class="fas fa-server"></i>
+                </div>
+                <h3 class="skills__category-title" id="backend-title">
+                  Backend
+                </h3>
+              </header>
+
+              <div class="skills__list" role="list">
+                <!-- Python -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-python" aria-hidden="true"></i>
+                      Python
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="70"
+                      data-suffix="%"
+                      aria-label="70 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="70"></div>
+                  </div>
+                  <p class="skills__item-level">Intermediário</p>
+                </article>
+
+                <!-- PostgreSQL -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fas fa-database" aria-hidden="true"></i>
+                      PostgreSQL
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="65"
+                      data-suffix="%"
+                      aria-label="65 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="65"></div>
+                  </div>
+                  <p class="skills__item-level">Intermediário</p>
+                </article>
+
+                <!-- API REST -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fas fa-cogs" aria-hidden="true"></i>
+                      API REST
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="70"
+                      data-suffix="%"
+                      aria-label="70 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="70"></div>
+                  </div>
+                  <p class="skills__item-level">Intermediário</p>
+                </article>
+
+                <!-- Node.js -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-node-js" aria-hidden="true"></i>
+                      Node.js
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="55"
+                      data-suffix="%"
+                      aria-label="55 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="55"></div>
+                  </div>
+                  <p class="skills__item-level">Básico</p>
+                </article>
+              </div>
+            </article>
+
+            <!-- Ferramentas Category -->
+            <article class="skills__category" aria-labelledby="tools-title">
+              <header class="skills__category-header">
+                <div class="skills__category-icon" aria-hidden="true">
+                  <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="skills__category-title" id="tools-title">
+                  Ferramentas
+                </h3>
+              </header>
+
+              <div class="skills__list" role="list">
+                <!-- Git & GitHub -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-git-alt" aria-hidden="true"></i>
+                      Git & GitHub
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="80"
+                      data-suffix="%"
+                      aria-label="80 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="80"></div>
+                  </div>
+                  <p class="skills__item-level">Avançado</p>
+                </article>
+
+                <!-- VS Code -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fas fa-code" aria-hidden="true"></i>
+                      VS Code
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="90"
+                      data-suffix="%"
+                      aria-label="90 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="90"></div>
+                  </div>
+                  <p class="skills__item-level">Avançado</p>
+                </article>
+
+                <!-- Responsive Design -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                      Responsive Design
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="85"
+                      data-suffix="%"
+                      aria-label="85 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="85"></div>
+                  </div>
+                  <p class="skills__item-level">Avançado</p>
+                </article>
+
+                <!-- Docker -->
+                <article class="skills__item" role="listitem">
+                  <header class="skills__item-header">
+                    <h4 class="skills__item-name">
+                      <i class="fab fa-docker" aria-hidden="true"></i>
+                      Docker
+                    </h4>
+                    <output
+                      class="skills__item-percentage"
+                      data-percentage="50"
+                      data-suffix="%"
+                      aria-label="50 porcento de proficiência"
+                      >0</output
+                    >
+                  </header>
+                  <div
+                    class="skills__item-bar"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="skills__item-progress" data-progress="50"></div>
+                  </div>
+                  <p class="skills__item-level">Básico</p>
+                </article>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="projects" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <!-- Header da seção -->
+          <header class="projects__header">
+            <h2 class="projects__title" id="projects-title">Projetos</h2>
+            <p class="projects__subtitle">
+              Alguns dos projetos que desenvolvi para demonstrar minhas
+              habilidades
+            </p>
+          </header>
+
+          <!-- Filtros com nav semântico -->
+          <nav
+            class="projects__filters"
+            role="navigation"
+            aria-label="Filtros de projetos"
+          >
+            <button
+              class="projects__filter projects__filter--active"
+              data-filter="all"
+              role="tab"
+              aria-selected="true"
+              aria-controls="projects-grid"
+              aria-label="Mostrar todos os projetos"
+            >
+              Todos
+              <span
+                class="projects__filter-count"
+                aria-label="Total: 6 projetos"
+                >6</span
+              >
+            </button>
+            <button
+              class="projects__filter"
+              data-filter="frontend"
+              role="tab"
+              aria-selected="false"
+              aria-controls="projects-grid"
+              aria-label="Filtrar projetos Frontend"
+            >
+              Frontend
+              <span
+                class="projects__filter-count"
+                aria-label="Total: 3 projetos"
+                >3</span
+              >
+            </button>
+            <button
+              class="projects__filter"
+              data-filter="backend"
+              role="tab"
+              aria-selected="false"
+              aria-controls="projects-grid"
+              aria-label="Filtrar projetos Backend"
+            >
+              Backend
+              <span
+                class="projects__filter-count"
+                aria-label="Total: 2 projetos"
+                >2</span
+              >
+            </button>
+            <button
+              class="projects__filter"
+              data-filter="fullstack"
+              role="tab"
+              aria-selected="false"
+              aria-controls="projects-grid"
+              aria-label="Filtrar projetos Full Stack"
+            >
+              Full Stack
+              <span class="projects__filter-count" aria-label="Total: 1 projeto"
+                >1</span
+              >
+            </button>
+          </nav>
+
+          <!-- Grid de projetos -->
+          <div class="projects__grid" id="projects-grid" role="tabpanel">
+            <!-- Projeto 1 - Landing Page -->
+            <article
+              class="projects__card"
+              data-category="frontend"
+              aria-labelledby="project-1"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="Landing Page Empresa Americana - Preview do projeto mostrando design moderno e responsivo"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto Landing Page Moderna
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto Landing Page"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto1"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://projeto1.netlify.app"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver projeto ao vivo"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-1">
+                    Landing Page Moderna
+                  </h3>
+                </header>
+
+                <p class="projects__description">
+                  Landing page responsiva desenvolvida para empresa americana,
+                  com animações suaves e otimizada para conversão.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">HTML5</li>
+                  <li class="projects__tag" role="listitem">CSS3</li>
+                  <li class="projects__tag" role="listitem">JavaScript</li>
+                  <li class="projects__tag" role="listitem">Sass</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-11">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Nov 2024
+                  </time>
+                  <span class="projects__category" role="note">Frontend</span>
+                </footer>
+              </section>
+            </article>
+
+            <!-- Projeto 2 - E-commerce -->
+            <article
+              class="projects__card"
+              data-category="frontend"
+              aria-labelledby="project-2"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="E-commerce Interface - Preview mostrando carrinho de compras e catálogo de produtos"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto E-commerce UI
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto E-commerce"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto2"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://projeto2.netlify.app"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver projeto ao vivo"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-2">E-commerce UI</h3>
+                </header>
+
+                <p class="projects__description">
+                  Interface de e-commerce com carrinho funcional, filtros de
+                  produtos e design responsivo mobile-first.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">React</li>
+                  <li class="projects__tag" role="listitem">CSS3</li>
+                  <li class="projects__tag" role="listitem">Context API</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-10">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Out 2024
+                  </time>
+                  <span class="projects__category" role="note">Frontend</span>
+                </footer>
+              </section>
+            </article>
+
+            <!-- Projeto 3 - API REST -->
+            <article
+              class="projects__card"
+              data-category="backend"
+              aria-labelledby="project-3"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="API REST Documentation - Interface da documentação Swagger mostrando endpoints"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto API REST Python
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto API REST"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto3"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://api-docs.com"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver documentação"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-3">API REST Python</h3>
+                </header>
+
+                <p class="projects__description">
+                  API RESTful desenvolvida com Python e Flask, incluindo
+                  autenticação JWT e documentação completa.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">Python</li>
+                  <li class="projects__tag" role="listitem">Flask</li>
+                  <li class="projects__tag" role="listitem">PostgreSQL</li>
+                  <li class="projects__tag" role="listitem">JWT</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-09">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Set 2024
+                  </time>
+                  <span class="projects__category" role="note">Backend</span>
+                </footer>
+              </section>
+            </article>
+
+            <!-- Projeto 4 - Dashboard -->
+            <article
+              class="projects__card"
+              data-category="frontend"
+              aria-labelledby="project-4"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="Dashboard Analytics - Painel com gráficos e métricas de desempenho"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto Dashboard Analytics
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto Dashboard"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto4"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://dashboard-demo.com"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver projeto ao vivo"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-4">
+                    Dashboard Analytics
+                  </h3>
+                </header>
+
+                <p class="projects__description">
+                  Painel administrativo com gráficos interativos, visualização
+                  de dados em tempo real e design moderno.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">JavaScript</li>
+                  <li class="projects__tag" role="listitem">Chart.js</li>
+                  <li class="projects__tag" role="listitem">API REST</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-08">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Ago 2024
+                  </time>
+                  <span class="projects__category" role="note">Frontend</span>
+                </footer>
+              </section>
+            </article>
+
+            <!-- Projeto 5 - Task Manager -->
+            <article
+              class="projects__card"
+              data-category="fullstack"
+              aria-labelledby="project-5"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="Task Manager App - Interface de gerenciamento de tarefas com recursos de arrastar e soltar"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto Task Manager Full Stack
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto Task Manager"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto5"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://taskmanager.app"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver projeto ao vivo"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-5">
+                    Task Manager Full Stack
+                  </h3>
+                </header>
+
+                <p class="projects__description">
+                  Aplicação completa para gerenciamento de tarefas com
+                  autenticação, drag-and-drop e sincronização em tempo real.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">Python</li>
+                  <li class="projects__tag" role="listitem">PostgreSQL</li>
+                  <li class="projects__tag" role="listitem">JavaScript</li>
+                  <li class="projects__tag" role="listitem">WebSocket</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-07">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Jul 2024
+                  </time>
+                  <span class="projects__category" role="note">Full Stack</span>
+                </footer>
+              </section>
+            </article>
+
+            <!-- Projeto 6 - Blog -->
+            <article
+              class="projects__card"
+              data-category="backend"
+              aria-labelledby="project-6"
+            >
+              <figure class="projects__image-container">
+                <img
+                  src="https://via.placeholder.com/600x400"
+                  alt="Blog Platform - Interface do CMS com editor de texto rico"
+                  class="projects__image"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <figcaption class="sr-only">
+                  Preview do projeto Blog Platform
+                </figcaption>
+
+                <nav
+                  class="projects__overlay"
+                  aria-label="Links do projeto Blog"
+                >
+                  <a
+                    href="https://github.com/seu-usuario/projeto6"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver código no GitHub"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a
+                    href="https://blog-platform.com"
+                    class="projects__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver projeto ao vivo"
+                  >
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+                </nav>
+              </figure>
+
+              <section class="projects__content">
+                <header>
+                  <h3 class="projects__name" id="project-6">Blog Platform</h3>
+                </header>
+
+                <p class="projects__description">
+                  Plataforma de blog com CMS customizado, editor de texto rico e
+                  sistema de comentários moderados.
+                </p>
+
+                <ul
+                  class="projects__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <li class="projects__tag" role="listitem">Python</li>
+                  <li class="projects__tag" role="listitem">Django</li>
+                  <li class="projects__tag" role="listitem">PostgreSQL</li>
+                </ul>
+
+                <footer class="projects__footer">
+                  <time class="projects__date" datetime="2024-06">
+                    <i class="far fa-calendar" aria-hidden="true"></i>
+                    Jun 2024
+                  </time>
+                  <span class="projects__category" role="note">Backend</span>
+                </footer>
+              </section>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section
+        class="experience"
+        id="experience"
+        aria-labelledby="experience-title"
+      >
+        <div class="container">
+          <!-- Section Header -->
+          <header class="experience__header">
+            <h2 class="experience__title" id="experience-title">
+              Minha Jornada
+            </h2>
+            <p class="experience__subtitle">
+              Transição de carreira para desenvolvimento através de projetos
+              práticos e aprendizado contínuo
+            </p>
+          </header>
+
+          <!-- Timeline Container -->
+          <div class="timeline" role="list">
+            <!-- Timeline Line (decorative) -->
+            <div class="timeline__line" aria-hidden="true"></div>
+
+            <!-- Item 1 - Projeto Atual/Mais Recente -->
+            <article class="timeline__item" role="listitem">
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2024-10/2024-12">
+                    <span class="timeline__date-text">Out 2024 - Presente</span>
+                    <span class="timeline__badge timeline__badge--active"
+                      >Em desenvolvimento</span
+                    >
+                  </time>
+                  <h3 class="timeline__title">Task Manager Full Stack</h3>
+                  <h4 class="timeline__company">
+                    Projeto Pessoal - Aplicação Completa
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Desenvolvimento de uma aplicação completa de gerenciamento de
+                  tarefas, simulando um produto real com arquitetura escalável.
+                  Projeto focado em resolver problemas reais de produtividade e
+                  colaboração em equipes.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <span class="timeline__tag" role="listitem">Python</span>
+                  <span class="timeline__tag" role="listitem">Django</span>
+                  <span class="timeline__tag" role="listitem">PostgreSQL</span>
+                  <span class="timeline__tag" role="listitem">JavaScript</span>
+                  <span class="timeline__tag" role="listitem">WebSocket</span>
+                  <span class="timeline__tag" role="listitem">Docker</span>
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Principais conquistas"
+                >
+                  <li>
+                    <strong>Autenticação segura:</strong> Implementação de JWT
+                    com refresh tokens
+                  </li>
+                  <li>
+                    <strong>Real-time:</strong> Sincronização em tempo real
+                    entre usuários usando WebSocket
+                  </li>
+                  <li>
+                    <strong>Drag & Drop:</strong> Interface intuitiva para
+                    organização de tarefas
+                  </li>
+                  <li>
+                    <strong>CI/CD:</strong> Pipeline automatizado para deploy
+                    contínuo
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Item 2 - API REST -->
+            <article
+              class="timeline__item timeline__item--right"
+              role="listitem"
+            >
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-server"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2024-08/2024-10">
+                    <span class="timeline__date-text">Ago - Out 2024</span>
+                  </time>
+                  <h3 class="timeline__title">
+                    API REST Python com Documentação
+                  </h3>
+                  <h4 class="timeline__company">
+                    Projeto Pessoal - Backend Development
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Criação de API RESTful completa com foco em boas práticas de
+                  desenvolvimento backend. Projeto desenvolvido seguindo padrões
+                  de mercado para APIs empresariais, incluindo versionamento,
+                  rate limiting e documentação interativa.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <span class="timeline__tag" role="listitem">Python</span>
+                  <span class="timeline__tag" role="listitem">Flask</span>
+                  <span class="timeline__tag" role="listitem">PostgreSQL</span>
+                  <span class="timeline__tag" role="listitem">JWT</span>
+                  <span class="timeline__tag" role="listitem">Swagger</span>
+                  <span class="timeline__tag" role="listitem">Redis</span>
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Principais conquistas"
+                >
+                  <li>
+                    <strong>Documentação Swagger:</strong> API totalmente
+                    documentada e testável
+                  </li>
+                  <li>
+                    <strong>Segurança:</strong> Autenticação JWT com controle de
+                    permissões por roles
+                  </li>
+                  <li>
+                    <strong>Performance:</strong> Cache com Redis e otimização
+                    de queries
+                  </li>
+                  <li>
+                    <strong>Testes:</strong> Cobertura de 85% com testes
+                    unitários e de integração
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Item 3 - Dashboard Analytics -->
+            <article class="timeline__item" role="listitem">
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2024-06/2024-08">
+                    <span class="timeline__date-text">Jun - Ago 2024</span>
+                  </time>
+                  <h3 class="timeline__title">
+                    Dashboard Analytics Interativo
+                  </h3>
+                  <h4 class="timeline__company">
+                    Projeto Pessoal - Data Visualization
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Desenvolvimento de dashboard para visualização de dados em
+                  tempo real, simulando painéis empresariais de Business
+                  Intelligence. Foco em UX/UI e performance para grandes volumes
+                  de dados.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <span class="timeline__tag" role="listitem"
+                    >JavaScript ES6+</span
+                  >
+                  <span class="timeline__tag" role="listitem">Chart.js</span>
+                  <span class="timeline__tag" role="listitem">D3.js</span>
+                  <span class="timeline__tag" role="listitem">API REST</span>
+                  <span class="timeline__tag" role="listitem">WebSocket</span>
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Principais conquistas"
+                >
+                  <li>
+                    <strong>Gráficos dinâmicos:</strong> 8 tipos diferentes de
+                    visualizações interativas
+                  </li>
+                  <li>
+                    <strong>Real-time updates:</strong> Atualização automática
+                    sem refresh da página
+                  </li>
+                  <li>
+                    <strong>Responsividade:</strong> Adaptação perfeita para
+                    mobile e tablet
+                  </li>
+                  <li>
+                    <strong>Performance:</strong> Lazy loading e virtualização
+                    para grandes datasets
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Item 4 - E-commerce UI -->
+            <article
+              class="timeline__item timeline__item--right"
+              role="listitem"
+            >
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2024-04/2024-06">
+                    <span class="timeline__date-text">Abr - Jun 2024</span>
+                  </time>
+                  <h3 class="timeline__title">E-commerce UI com React</h3>
+                  <h4 class="timeline__company">
+                    Projeto Pessoal - Frontend Development
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Interface completa de e-commerce desenvolvida com React,
+                  incluindo catálogo de produtos, carrinho de compras, e
+                  checkout. Projeto focado em criar uma experiência de compra
+                  fluida e conversão otimizada.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Tecnologias utilizadas"
+                >
+                  <span class="timeline__tag" role="listitem">React.js</span>
+                  <span class="timeline__tag" role="listitem">Context API</span>
+                  <span class="timeline__tag" role="listitem"
+                    >Styled Components</span
+                  >
+                  <span class="timeline__tag" role="listitem"
+                    >LocalStorage</span
+                  >
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Principais conquistas"
+                >
+                  <li>
+                    <strong>State Management:</strong> Gerenciamento eficiente
+                    com Context API
+                  </li>
+                  <li>
+                    <strong>Filtros avançados:</strong> Sistema de busca e
+                    filtros por categoria/preço
+                  </li>
+                  <li>
+                    <strong>Mobile First:</strong> Design responsivo com foco em
+                    dispositivos móveis
+                  </li>
+                  <li>
+                    <strong>Performance:</strong> Lazy loading de imagens e code
+                    splitting
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Item 5 - Início da Transição -->
+            <article class="timeline__item" role="listitem">
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2024-01/2024-04">
+                    <span class="timeline__date-text">Jan - Abr 2024</span>
+                  </time>
+                  <h3 class="timeline__title">
+                    Início da Transição de Carreira
+                  </h3>
+                  <h4 class="timeline__company">
+                    Estudos Intensivos & Primeiros Projetos
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Decisão de migrar para desenvolvimento web após 11 anos desde
+                  a graduação em Sistemas de Informação. Período de imersão
+                  total em tecnologias modernas, criando os primeiros projetos
+                  para consolidar conhecimentos.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Tecnologias estudadas"
+                >
+                  <span class="timeline__tag" role="listitem">HTML5</span>
+                  <span class="timeline__tag" role="listitem">CSS3/Sass</span>
+                  <span class="timeline__tag" role="listitem">JavaScript</span>
+                  <span class="timeline__tag" role="listitem">Git/GitHub</span>
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Principais marcos"
+                >
+                  <li>
+                    <strong>Landing Pages:</strong> 3 projetos completos de
+                    páginas comerciais
+                  </li>
+                  <li>
+                    <strong>Blog Platform:</strong> CMS customizado com editor
+                    de texto rico
+                  </li>
+                  <li>
+                    <strong>Certificações:</strong> Cursos de JavaScript, React
+                    e Python concluídos
+                  </li>
+                  <li>
+                    <strong>Open Source:</strong> Primeiras contribuições em
+                    projetos open source
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Item 6 - Formação -->
+            <article
+              class="timeline__item timeline__item--right"
+              role="listitem"
+            >
+              <div class="timeline__dot" aria-hidden="true">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="timeline__content">
+                <header class="timeline__header">
+                  <time class="timeline__date" datetime="2009/2013">
+                    <span class="timeline__date-text">2009 - 2013</span>
+                  </time>
+                  <h3 class="timeline__title">
+                    Bacharelado em Sistemas de Informação
+                  </h3>
+                  <h4 class="timeline__company">
+                    Universidade Católica de Brasília
+                  </h4>
+                </header>
+
+                <p class="timeline__description">
+                  Formação completa em Sistemas de Informação, com foco em
+                  análise de sistemas, banco de dados e desenvolvimento de
+                  software. Base sólida que facilita minha transição atual para
+                  desenvolvimento web moderno.
+                </p>
+
+                <div
+                  class="timeline__tags"
+                  role="list"
+                  aria-label="Áreas de estudo"
+                >
+                  <span class="timeline__tag" role="listitem">Algoritmos</span>
+                  <span class="timeline__tag" role="listitem"
+                    >Banco de Dados</span
+                  >
+                  <span class="timeline__tag" role="listitem"
+                    >Engenharia de Software</span
+                  >
+                  <span class="timeline__tag" role="listitem">Redes</span>
+                </div>
+
+                <ul
+                  class="timeline__achievements"
+                  aria-label="Destaques acadêmicos"
+                >
+                  <li>
+                    <strong>Projeto de Conclusão:</strong> Sistema de gestão
+                    para pequenas empresas
+                  </li>
+                  <li>
+                    <strong>Linguagens estudadas:</strong> Java, C++, PHP e SQL
+                  </li>
+                  <li>
+                    <strong>Fundamentos sólidos:</strong> POO, Estrutura de
+                    Dados e Padrões de Projeto
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Call to Action -->
+            <aside class="timeline__cta" role="complementary">
+              <p class="timeline__cta-text">
+                <strong
+                  >Em busca da minha primeira oportunidade como
+                  desenvolvedor!</strong
+                ><br />
+                Apesar de não ter experiência formal na área, meu portfólio
+                demonstra dedicação, capacidade de aprendizado e habilidade para
+                criar soluções reais.
+              </p>
+            </aside>
           </div>
         </div>
       </section>

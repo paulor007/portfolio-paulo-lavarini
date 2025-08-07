@@ -455,3 +455,193 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(statsSection);
   }
 });
+
+// ========================================
+// ANIMAÇÃO DAS BARRAS DE HABILIDADES
+// ========================================
+
+// Função para animar as barras de progresso
+function animateSkillBars(entries, observer) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const progressBars = entry.target.querySelectorAll(
+        '.skills__item-progress'
+      );
+      const percentages = entry.target.querySelectorAll(
+        '.skills__item-percentage'
+      );
+
+      progressBars.forEach((bar, index) => {
+        const progress = bar.dataset.progress;
+        const percentage = percentages[index];
+
+        // Delay para cada barra
+        setTimeout(() => {
+          // Anima a barra
+          bar.style.width = `${progress}%`;
+
+          // Anima o contador
+          animateSkillPercentage(percentage, progress);
+        }, index * 100); // 100ms de delay entre cada barra
+      });
+
+      // Para de observar após animar
+      observer.unobserve(entry.target);
+    }
+  });
+}
+
+// Função para animar a porcentagem
+function animateSkillPercentage(element, target) {
+  const duration = 1500; // 1.5 segundos
+  const start = 0;
+  const increment = target / (duration / 16); // 60 FPS
+  let current = start;
+
+  const updatePercentage = () => {
+    current += increment;
+
+    if (current < target) {
+      element.textContent = `${Math.floor(current)}%`;
+      requestAnimationFrame(updatePercentage);
+    } else {
+      element.textContent = `${target}%`;
+    }
+  };
+
+  updatePercentage();
+}
+
+// Observer para as skills
+const skillsObserver = new IntersectionObserver(animateSkillBars, {
+  threshold: 0.2,
+  rootMargin: '0px 0px -50px 0px',
+});
+
+// Inicializar observer das skills
+document.addEventListener('DOMContentLoaded', () => {
+  // Observar cada categoria individualmente para animação escalonada
+  const skillCategories = document.querySelectorAll('.skills__category');
+  skillCategories.forEach((category) => {
+    skillsObserver.observe(category);
+  });
+});
+
+// ========================================
+// FILTROS DE PROJETOS
+// ========================================
+
+// Função para filtrar projetos
+function initProjectFilters() {
+  const filterButtons = document.querySelectorAll('.projects__filter');
+  const projectCards = document.querySelectorAll('.projects__card');
+
+  if (filterButtons.length === 0) return;
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      // Atualizar botão ativo
+      filterButtons.forEach((btn) =>
+        btn.classList.remove('projects__filter--active')
+      );
+      button.classList.add('projects__filter--active');
+
+      // Filtrar projetos com animação
+      projectCards.forEach((card, index) => {
+        const category = card.dataset.category;
+
+        if (filter === 'all' || category === filter) {
+          // Mostrar com delay
+          setTimeout(() => {
+            card.style.display = 'flex';
+            card.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          }, index * 50);
+        } else {
+          // Esconder
+          card.style.animation = 'fadeOut 0.3s ease-out forwards';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
+      });
+
+      // Atualizar contadores (opcional)
+      updateFilterCounts();
+    });
+  });
+}
+
+// Função para atualizar contadores
+function updateFilterCounts() {
+  const filters = document.querySelectorAll('.projects__filter');
+  const allCards = document.querySelectorAll('.projects__card');
+
+  filters.forEach((filter) => {
+    const filterType = filter.dataset.filter;
+    const count =
+      filterType === 'all'
+        ? allCards.length
+        : document.querySelectorAll(
+            `.projects__card[data-category="${filterType}"]`
+          ).length;
+
+    const countElement = filter.querySelector('.projects__filter-count');
+    if (countElement) {
+      countElement.textContent = count;
+    }
+  });
+}
+
+// Animação de fade out
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+`;
+document.head.appendChild(style);
+
+// Inicializar quando o DOM carregar
+document.addEventListener('DOMContentLoaded', () => {
+  initProjectFilters();
+});
+
+// ========================================
+// LAZY LOADING DE IMAGENS
+// ========================================
+
+// Observer para carregar imagens sob demanda
+const imageObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const src = img.dataset.src;
+
+        if (src) {
+          img.src = src;
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      }
+    });
+  },
+  {
+    rootMargin: '50px 0px',
+  }
+);
+
+// Observar todas as imagens dos projetos
+document.addEventListener('DOMContentLoaded', () => {
+  const projectImages = document.querySelectorAll('.projects__image[data-src]');
+  projectImages.forEach((img) => imageObserver.observe(img));
+});

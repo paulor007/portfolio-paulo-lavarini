@@ -1,0 +1,346 @@
+// -----------------------------------------------------------------------------
+// Skills Section - ARQUIVO COMPLETO
+// -----------------------------------------------------------------------------
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.skills {
+  padding: $spacing-3xl 0;
+  position: relative;
+
+  @include respond-to('md') {
+    padding: rem(100) 0;
+  }
+
+  // Container
+  .container {
+    @include container;
+  }
+
+  // Header da seção
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @include respond-to('md') {
+      margin-bottom: rem(80);
+    }
+  }
+
+  // Título
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: $color-gray-900;
+    margin-bottom: $spacing-md;
+    position: relative;
+    display: inline-block;
+
+    // Decoração sublinhada
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: rem(60);
+      height: rem(4);
+      background: linear-gradient(90deg, $color-primary, $color-secondary);
+      border-radius: $border-radius-full;
+    }
+  }
+
+  // Subtítulo
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-gray-600;
+    max-width: rem(600);
+    margin: 0 auto;
+
+    @include respond-to('md') {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // Grid principal
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-3xl;
+    }
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // Categoria de habilidades
+  &__category {
+    background: $color-white;
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 4px 20px rgba($color-black, 0.08);
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+
+    // Hover effect
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba($color-black, 0.12);
+
+      .skills__category-icon {
+        transform: rotate(5deg) scale(1.1);
+      }
+    }
+
+    // Decoração de fundo
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: rem(200);
+      height: rem(200);
+      background: radial-gradient(
+        circle,
+        rgba($color-primary, 0.1) 0%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      transition: all $transition-slow;
+    }
+
+    &:hover::before {
+      transform: scale(1.5);
+    }
+  }
+
+  // Cabeçalho da categoria
+  &__category-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    position: relative;
+    z-index: 1;
+  }
+
+  // Ícone da categoria
+  &__category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(60);
+    height: rem(60);
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    border-radius: $border-radius-lg;
+    color: $color-white;
+    font-size: rem(28);
+    transition: transform $transition-base;
+    flex-shrink: 0;
+  }
+
+  // Título da categoria
+  &__category-title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-gray-900;
+    margin: 0;
+  }
+
+  // Lista de habilidades
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    position: relative;
+    z-index: 1;
+  }
+
+  // Item individual
+  &__item {
+    // Nada aqui, estrutura no próximo
+  }
+
+  // Header do item
+  &__item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  // Nome da habilidade
+  &__item-name {
+    font-weight: 600;
+    color: $color-gray-700;
+    font-size: $font-size-base;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+
+    // Ícone pequeno (opcional)
+    i {
+      font-size: rem(16);
+      color: $color-primary;
+      opacity: 0.7;
+    }
+  }
+
+  // Porcentagem
+  &__item-percentage {
+    font-weight: 700;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    min-width: rem(45);
+    text-align: right;
+  }
+
+  // Container da barra
+  &__item-bar {
+    position: relative;
+    height: rem(10);
+    background: $color-gray-200;
+    border-radius: $border-radius-full;
+    overflow: hidden;
+  }
+
+  // Progresso da barra
+  &__item-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    border-radius: $border-radius-full;
+    width: 0%; // Será animado via JS
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Efeito de brilho
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba($color-white, 0.3),
+        transparent
+      );
+      animation: shimmer 2s infinite;
+    }
+  }
+
+  // Nível de proficiência (opcional)
+  &__item-level {
+    font-size: $font-size-xs;
+    color: $color-gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: $spacing-xs;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 1s forwards;
+  }
+}
+
+// Animação de brilho
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// Tema escuro
+[data-theme='dark'] {
+  .skills {
+    &__title {
+      color: $color-gray-100;
+    }
+
+    &__subtitle {
+      color: $color-gray-400;
+    }
+
+    &__category {
+      background: $color-gray-800;
+      box-shadow: 0 4px 20px rgba($color-black, 0.3);
+
+      &:hover {
+        box-shadow: 0 8px 30px rgba($color-black, 0.5);
+      }
+
+      &::before {
+        background: radial-gradient(
+          circle,
+          rgba($color-primary-dark, 0.15) 0%,
+          transparent 70%
+        );
+      }
+    }
+
+    &__category-title {
+      color: $color-gray-100;
+    }
+
+    &__item-name {
+      color: $color-gray-300;
+    }
+
+    &__item-percentage {
+      color: $color-primary-light;
+    }
+
+    &__item-bar {
+      background: $color-gray-700;
+    }
+
+    &__item-level {
+      color: $color-gray-500;
+    }
+  }
+}
+
+// Animações de entrada
+.skills__category {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Responsividade
+@media (prefers-reduced-motion: reduce) {
+  .skills {
+    &__category {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+
+    &__item-progress {
+      transition: none !important;
+
+      &::after {
+        animation: none !important;
+      }
+    }
+  }
+}

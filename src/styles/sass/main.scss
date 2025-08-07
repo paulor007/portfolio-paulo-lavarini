@@ -21,6 +21,9 @@
 // 5. Sections
 @use 'section/hero';
 @use 'section/about';
+@use 'section/skills';
+@use 'section/projects';
+@use 'section/experience';
 
 // 5. Utilities
 @use 'utilities/helpers';
