@@ -121,6 +121,7 @@
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s ease-out forwards;
+    text-align: justify;
 
     // Items à direita
     &--right {
@@ -132,7 +133,6 @@
       }
 
       .timeline__content {
-        padding-left: 0;
         padding-right: $spacing-2xl;
 
         &::before {

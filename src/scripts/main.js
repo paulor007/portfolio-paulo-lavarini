@@ -645,3 +645,404 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectImages = document.querySelectorAll('.projects__image[data-src]');
   projectImages.forEach((img) => imageObserver.observe(img));
 });
+
+// -----------------------------------------------------------------------------
+// Contact Form JavaScript Module
+// Path: src/scripts/modules/contact.js
+// -----------------------------------------------------------------------------
+
+class ContactForm {
+  constructor() {
+    this.form = document.getElementById('contact-form');
+    this.formInputs = this.form?.querySelectorAll('input, select, textarea');
+    this.messageCounter = document.getElementById('message-count');
+    this.messageTextarea = document.getElementById('message');
+    this.successMessage = this.form?.querySelector(
+      '.contact__form-message--success'
+    );
+    this.errorMessage = this.form?.querySelector(
+      '.contact__form-message--error'
+    );
+
+    this.maxMessageLength = 500;
+    this.isSubmitting = false;
+
+    this.init();
+  }
+
+  init() {
+    if (!this.form) return;
+
+    this.setupEventListeners();
+    this.setupPhoneMask();
+    this.setupMessageCounter();
+    this.setupFormValidation();
+  }
+
+  // Event Listeners
+  setupEventListeners() {
+    // Form submit
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+    // Reset form
+    this.form.addEventListener('reset', () => this.handleReset());
+
+    // Real-time validation
+    this.formInputs.forEach((input) => {
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => this.clearError(input));
+    });
+
+    // Privacy checkbox custom validation
+    const privacyCheckbox = document.getElementById('privacy');
+    if (privacyCheckbox) {
+      privacyCheckbox.addEventListener('change', () => {
+        this.validateField(privacyCheckbox);
+      });
+    }
+  }
+
+  // Phone mask (Brazilian format)
+  setupPhoneMask() {
+    const phoneInput = document.getElementById('phone');
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+
+      if (value.length > 0) {
+        if (value.length <= 2) {
+          value = `(${value}`;
+        } else if (value.length <= 6) {
+          value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+        } else if (value.length <= 10) {
+          value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
+        } else {
+          value = `(${value.slice(0, 2)}) ${value.slice(2, 3)} ${value.slice(3, 7)}-${value.slice(7, 11)}`;
+        }
+      }
+
+      e.target.value = value;
+    });
+  }
+
+  // Message character counter
+  setupMessageCounter() {
+    if (!this.messageTextarea || !this.messageCounter) return;
+
+    this.messageTextarea.addEventListener('input', (e) => {
+      const length = e.target.value.length;
+      this.messageCounter.textContent = length;
+
+      // Change color when approaching limit
+      const counterElement = this.messageCounter.parentElement;
+      if (length > this.maxMessageLength * 0.9) {
+        counterElement.style.color = 'var(--color-warning)';
+      } else if (length > this.maxMessageLength) {
+        counterElement.style.color = 'var(--color-error)';
+        e.target.value = e.target.value.substring(0, this.maxMessageLength);
+      } else {
+        counterElement.style.color = '';
+      }
+    });
+  }
+
+  // Form validation setup
+  setupFormValidation() {
+    // Custom validation messages in Portuguese
+    this.validationMessages = {
+      name: {
+        required: 'Por favor, informe seu nome',
+        pattern: 'Nome deve conter apenas letras e espaços',
+        minLength: 'Nome deve ter pelo menos 3 caracteres',
+      },
+      email: {
+        required: 'Por favor, informe seu email',
+        pattern: 'Por favor, informe um email válido',
+        email: 'Formato de email inválido',
+      },
+      phone: {
+        pattern: 'Formato de telefone inválido',
+        minLength: 'Telefone incompleto',
+      },
+      subject: {
+        required: 'Por favor, selecione um assunto',
+      },
+      message: {
+        required: 'Por favor, escreva sua mensagem',
+        minLength: 'Mensagem deve ter pelo menos 10 caracteres',
+        maxLength: `Mensagem não pode exceder ${this.maxMessageLength} caracteres`,
+      },
+      privacy: {
+        required: 'Você precisa aceitar a política de privacidade',
+      },
+    };
+  }
+
+  // Validate individual field
+  validateField(field) {
+    const fieldName = field.name;
+    const fieldValue =
+      field.type === 'checkbox' ? field.checked : field.value.trim();
+    const errorElement = document.getElementById(`${fieldName}-error`);
+
+    if (!errorElement) return true;
+
+    let isValid = true;
+    let errorMessage = '';
+
+    // Required validation
+    if (field.hasAttribute('required') && !fieldValue) {
+      isValid = false;
+      errorMessage =
+        this.validationMessages[fieldName]?.required || 'Campo obrigatório';
+    }
+
+    // Email validation
+    else if (field.type === 'email' && fieldValue) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(fieldValue)) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.email || 'Email inválido';
+      }
+    }
+
+    // Phone validation
+    else if (fieldName === 'phone' && fieldValue) {
+      const phoneRegex = /^\(\d{2}\)\s?\d?\s?\d{4}-?\d{4}$/;
+      if (!phoneRegex.test(fieldValue)) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.pattern || 'Telefone inválido';
+      }
+    }
+
+    // Name validation
+    else if (fieldName === 'name' && fieldValue) {
+      if (fieldValue.length < 3) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.minLength || 'Nome muito curto';
+      } else if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(fieldValue)) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.pattern || 'Nome inválido';
+      }
+    }
+
+    // Message validation
+    else if (fieldName === 'message' && fieldValue) {
+      if (fieldValue.length < 10) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.minLength ||
+          'Mensagem muito curta';
+      } else if (fieldValue.length > this.maxMessageLength) {
+        isValid = false;
+        errorMessage =
+          this.validationMessages[fieldName]?.maxLength ||
+          'Mensagem muito longa';
+      }
+    }
+
+    // Update UI
+    if (!isValid) {
+      this.showError(field, errorMessage);
+    } else {
+      this.clearError(field);
+      this.showSuccess(field);
+    }
+
+    return isValid;
+  }
+
+  // Show error message
+  showError(field, message) {
+    const errorElement = document.getElementById(`${field.name}-error`);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add('show');
+    }
+    field.classList.add('error');
+    field.classList.remove('success');
+  }
+
+  // Clear error message
+  clearError(field) {
+    const errorElement = document.getElementById(`${field.name}-error`);
+    if (errorElement) {
+      errorElement.textContent = '';
+      errorElement.classList.remove('show');
+    }
+    field.classList.remove('error');
+  }
+
+  // Show success state
+  showSuccess(field) {
+    if (field.value.trim() || field.type === 'checkbox') {
+      field.classList.add('success');
+    }
+  }
+
+  // Handle form submission
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    if (this.isSubmitting) return;
+
+    // Validate all fields
+    let isFormValid = true;
+    this.formInputs.forEach((input) => {
+      if (!this.validateField(input)) {
+        isFormValid = false;
+      }
+    });
+
+    if (!isFormValid) {
+      this.showFormMessage(
+        'error',
+        'Por favor, corrija os erros no formulário'
+      );
+      return;
+    }
+
+    // Prepare form data
+    const formData = new FormData(this.form);
+    const data = Object.fromEntries(formData);
+
+    // Start submission
+    this.setSubmittingState(true);
+
+    try {
+      // Simulate API call (replace with actual endpoint)
+      await this.sendFormData(data);
+
+      // Success
+      this.showFormMessage(
+        'success',
+        'Mensagem enviada com sucesso! Responderei em breve.'
+      );
+      this.form.reset();
+      this.handleReset();
+    } catch (error) {
+      // Error
+      console.error('Erro ao enviar formulário:', error);
+      this.showFormMessage(
+        'error',
+        'Erro ao enviar mensagem. Por favor, tente novamente.'
+      );
+    } finally {
+      this.setSubmittingState(false);
+    }
+  }
+
+  // Send form data (replace with actual API call)
+  async sendFormData(data) {
+    // Exemplo de integração com FormSubmit, EmailJS ou sua própria API
+
+    // Para FormSubmit.co (exemplo):
+    // const response = await fetch('https://formsubmit.co/ajax/seu-email@gmail.com', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // });
+
+    // Simulação de delay
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Simular sucesso em 90% dos casos
+        if (Math.random() > 0.1) {
+          resolve({ success: true });
+        } else {
+          reject(new Error('Erro simulado'));
+        }
+      }, 2000);
+    });
+  }
+
+  // Set submitting state
+  setSubmittingState(isSubmitting) {
+    this.isSubmitting = isSubmitting;
+    const submitButton = this.form.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+      submitButton.disabled = isSubmitting;
+
+      if (isSubmitting) {
+        submitButton.innerHTML = `
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Enviando...</span>
+        `;
+      } else {
+        submitButton.innerHTML = `
+          <i class="fas fa-paper-plane"></i>
+          <span>Enviar Mensagem</span>
+        `;
+      }
+    }
+  }
+
+  // Show form message (success or error)
+  showFormMessage(type, message) {
+    const messageElement =
+      type === 'success' ? this.successMessage : this.errorMessage;
+    const otherElement =
+      type === 'success' ? this.errorMessage : this.successMessage;
+
+    if (messageElement) {
+      messageElement.querySelector('p').textContent = message;
+      messageElement.hidden = false;
+
+      // Auto hide after 5 seconds
+      setTimeout(() => {
+        messageElement.hidden = true;
+      }, 5000);
+    }
+
+    if (otherElement) {
+      otherElement.hidden = true;
+    }
+
+    // Scroll to message
+    messageElement?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Handle form reset
+  handleReset() {
+    // Clear all errors and success states
+    this.formInputs.forEach((input) => {
+      this.clearError(input);
+      input.classList.remove('success');
+    });
+
+    // Reset counter
+    if (this.messageCounter) {
+      this.messageCounter.textContent = '0';
+    }
+
+    // Hide messages
+    if (this.successMessage) this.successMessage.hidden = true;
+    if (this.errorMessage) this.errorMessage.hidden = true;
+  }
+
+  // Public method to update email service configuration
+  setEmailService(service, config) {
+    this.emailService = service;
+    this.emailConfig = config;
+  }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = new ContactForm();
+
+  // Export for global use if needed
+  window.contactForm = contactForm;
+});
+
+// Export for ES6 modules
+export default ContactForm;

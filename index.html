@@ -1771,6 +1771,438 @@
           </div>
         </div>
       </section>
+
+      <!-- Contact Section -->
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <!-- Section Header -->
+          <header class="contact__header">
+            <h2 class="contact__title" id="contact-title">Entre em Contato</h2>
+            <p class="contact__subtitle">
+              Vamos conversar sobre projetos ou oportunidades?
+            </p>
+          </header>
+
+          <!-- Contact Content -->
+          <div class="contact__wrapper">
+            <!-- Contact Info -->
+            <aside class="contact__info" aria-labelledby="contact-info-title">
+              <h3 class="contact__info-title" id="contact-info-title">
+                Vamos nos conectar
+              </h3>
+              <p class="contact__info-description">
+                Estou sempre aberto a discutir novos projetos, oportunidades
+                criativas e como posso ajudar a transformar suas ideias em
+                realidade.
+              </p>
+
+              <!-- Info Cards -->
+              <address class="contact__info-list">
+                <!-- Email Card -->
+                <article class="contact__info-card">
+                  <div class="contact__info-icon" aria-hidden="true">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact__info-content">
+                    <h4 class="contact__info-label">Email</h4>
+                    <a
+                      href="mailto:paulo.lavarini@gmail.com"
+                      class="contact__info-value"
+                    >
+                      paulo.lavarini@gmail.com
+                    </a>
+                    <span class="contact__info-note">Respondo em até 24h</span>
+                  </div>
+                </article>
+
+                <!-- Phone Card -->
+                <article class="contact__info-card">
+                  <div class="contact__info-icon" aria-hidden="true">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="contact__info-content">
+                    <h4 class="contact__info-label">Telefone</h4>
+                    <a href="tel:+5561992020804" class="contact__info-value">
+                      (61) 9 9202-0804
+                    </a>
+                    <span class="contact__info-note">Seg-Sex, 8h-18h</span>
+                  </div>
+                </article>
+
+                <!-- Location Card -->
+                <article class="contact__info-card">
+                  <div class="contact__info-icon" aria-hidden="true">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact__info-content">
+                    <h4 class="contact__info-label">Localização</h4>
+                    <p class="contact__info-value">Brasília, DF - Brasil</p>
+                    <span class="contact__info-note"
+                      >Disponível para remoto</span
+                    >
+                  </div>
+                </article>
+
+                <!-- LinkedIn Card -->
+                <article class="contact__info-card">
+                  <div class="contact__info-icon" aria-hidden="true">
+                    <i class="fab fa-linkedin"></i>
+                  </div>
+                  <div class="contact__info-content">
+                    <h4 class="contact__info-label">LinkedIn</h4>
+                    <a
+                      href="www.linkedin.com/in/paulo-lavarini-20abaa38"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="contact__info-value"
+                    >
+                      Paulo Lavarini
+                    </a>
+                    <span class="contact__info-note">Vamos nos conectar</span>
+                  </div>
+                </article>
+              </address>
+
+              <!-- Social Links -->
+              <nav class="contact__social" aria-label="Redes sociais">
+                <h4 class="contact__social-title">Me siga nas redes</h4>
+                <ul class="contact__social-list" role="list">
+                  <li role="listitem">
+                    <a
+                      href="https://github.com/paulor007"
+                      class="contact__social-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </li>
+
+                  <li role="listitem">
+                    <a
+                      href="https://www.linkedin.com/in/paulo-lavarini-20abaa38/"
+                      class="contact__social-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                  </li>
+
+                  <li role="listitem">
+                    <a
+                      href="https://wa.me/5561992020804"
+                      class="contact__social-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="WhatsApp"
+                    >
+                      <i class="fab fa-whatsapp"></i>
+                    </a>
+                  </li>
+
+                  <li role="listitem">
+                    <a
+                      href="mailto:paulo.lavarini@gmail.com"
+                      class="contact__social-link"
+                      aria-label="Email"
+                    >
+                      <i class="fas fa-envelope"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+
+            <!-- Contact Form -->
+            <div class="contact__form-wrapper">
+              <form
+                class="contact__form"
+                id="contact-form"
+                action="#"
+                method="POST"
+                novalidate
+                aria-labelledby="form-title"
+              >
+                <h3 class="contact__form-title" id="form-title">
+                  Envie sua mensagem
+                </h3>
+
+                <!-- Name Field -->
+                <div class="contact__form-group">
+                  <label for="name" class="contact__form-label">
+                    Nome completo
+                    <span
+                      class="contact__form-required"
+                      aria-label="Campo obrigatório"
+                      >*</span
+                    >
+                  </label>
+
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="contact__form-input"
+                    required
+                    aria-required="true"
+                    aria-describedby="name-error"
+                    placeholder="Seu nome"
+                  />
+                  <span
+                    class="contact__form-error"
+                    id="name-error"
+                    role="alert"
+                  ></span>
+                </div>
+
+                <!-- Email Field -->
+                <div class="contact__form-group">
+                  <label for="email" class="contact__form-label">
+                    Email
+                    <span
+                      class="contact__form-required"
+                      aria-label="Campo obrigatório"
+                      >*</span
+                    >
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="contact__form-input"
+                    required
+                    aria-required="true"
+                    aria-describedby="email-error"
+                    placeholder="seu@email.com"
+                  />
+                  <span
+                    class="contact__form-error"
+                    id="email-error"
+                    role="alert"
+                  ></span>
+                </div>
+
+                <!-- Phone Field -->
+                <div class="contact__form-group">
+                  <label for="phone" class="contact__form-label">
+                    Telefone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="contact__form-input"
+                    aria-describedby="phone-error"
+                    placeholder="(61) 9 9999-9999"
+                  />
+                  <span
+                    class="contact__form-error"
+                    id="phone-error"
+                    role="alert"
+                  ></span>
+                </div>
+
+                <!-- Subject Field -->
+                <div class="contact__form-group">
+                  <label for="subject" class="contact__form-label">
+                    Assunto
+                    <span
+                      class="contact__form-required"
+                      aria-label="Campo obrigatório"
+                      >*</span
+                    >
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    class="contact__form-select"
+                    required
+                    aria-required="true"
+                    aria-describedby="subject-error"
+                  >
+                    <option value="">Selecione um assunto</option>
+                    <option value="oportunidade">
+                      Oportunidade de trabalho
+                    </option>
+                    <option value="freelance">Projeto freelance</option>
+                    <option value="parceria">Parceria</option>
+                    <option value="duvida">Dúvida</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                  <span
+                    class="contact__form-error"
+                    id="subject-error"
+                    role="alert"
+                  ></span>
+                </div>
+
+                <!-- Message Field -->
+                <div class="contact__form-group contact__form-group--full">
+                  <label for="message" class="contact__form-label">
+                    Mensagem
+                    <span
+                      class="contact__form-required"
+                      aria-label="Campo obrigatório"
+                      >*</span
+                    >
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="contact__form-textarea"
+                    rows="6"
+                    required
+                    aria-required="true"
+                    aria-describedby="message-error"
+                    placeholder="Descreva seu projeto ou proposta..."
+                  ></textarea>
+                  <span
+                    class="contact__form-error"
+                    id="message-error"
+                    role="alert"
+                  ></span>
+                  <span class="contact__form-counter" aria-live="polite">
+                    <span id="message-count">0</span>/500 caracteres
+                  </span>
+                </div>
+
+                <!-- Privacy Checkbox -->
+                <div class="contact__form-group contact__form-group--checkbox">
+                  <label class="contact__form-checkbox-label">
+                    <input
+                      type="checkbox"
+                      id="privacy"
+                      name="privacy"
+                      class="contact__form-checkbox"
+                      required
+                      aria-required="true"
+                      aria-describedby="privacy-error"
+                    />
+                    <span class="contact__form-checkbox-text">
+                      Concordo com a
+                      <a href="#privacy-policy" class="contact__form-link"
+                        >política de privacidade</a
+                      >
+                      e autorizo o contato
+                    </span>
+                  </label>
+                  <span
+                    class="contact__form-error"
+                    id="privacy-error"
+                    role="alert"
+                  ></span>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="contact__form-actions">
+                  <button
+                    type="submit"
+                    class="button button--primary button--large"
+                  >
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    <span>Enviar Mensagem</span>
+                  </button>
+                  <button type="reset" class="button button--outline">
+                    <i class="fas fa-redo" aria-hidden="true"></i>
+                    <span>Limpar</span>
+                  </button>
+                </div>
+
+                <!-- Success/Error Messages -->
+                <div
+                  class="contact__form-message contact__form-message--success"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  <p>Mensagem enviada com sucesso! Responderei em breve.</p>
+                </div>
+
+                <div
+                  class="contact__form-message contact__form-message--error"
+                  role="alert"
+                  aria-live="assertive"
+                  hidden
+                >
+                  <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                  <p>Erro ao enviar mensagem. Por favor, tente novamente.</p>
+                </div>
+              </form>
+
+              <!-- Alternative Contact -->
+              <div class="contact__alternative">
+                <p class="contact__alternative-text">
+                  Prefere um contato mais direto?
+                </p>
+                <a
+                  href="https://wa.me/5561992020804"
+                  class="button button--success"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                  <span>Chamar no WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Section (Opcional) -->
+          <aside class="contact__faq" aria-labelledby="faq-title">
+            <h3 class="contact__faq-title" id="faq-title">
+              Perguntas Frequentes
+            </h3>
+
+            <details class="contact__faq-item">
+              <summary class="contact__faq-question">
+                Quais tipos de projetos você costuma desenvolver?
+              </summary>
+              <p class="contact__faq-answer">
+                Costumo desenvolver aplicações web modernas, como landing pages,
+                e-commerces, painéis administrativos, APIs REST e sistemas
+                completos (full stack) focados em usabilidade, performance e
+                responsividade.
+              </p>
+            </details>
+
+            <details class="contact__faq-item">
+              <summary class="contact__faq-question">
+                Você trabalha com freelance?
+              </summary>
+              <p class="contact__faq-answer">
+                Sim! Estou disponível para projetos freelance, desde que sejam
+                compatíveis com minha disponibilidade. Vamos conversar sobre seu
+                projeto!
+              </p>
+            </details>
+
+            <details class="contact__faq-item">
+              <summary class="contact__faq-question">
+                Atende presencialmente em Brasília?
+              </summary>
+              <p class="contact__faq-answer">
+                Sim, posso atender presencialmente em Brasília mediante
+                agendamento. Também trabalho 100% remoto para clientes de todo o
+                Brasil.
+              </p>
+            </details>
+
+            <details class="contact__faq-item">
+              <summary class="contact__faq-question">
+                Quais formas de pagamento aceita?
+              </summary>
+              <p class="contact__faq-answer">
+                Para projetos freelance, aceito PIX, transferência bancária e
+                pagamento via PJ (emissão de nota fiscal).
+              </p>
+            </details>
+          </aside>
+        </div>
+      </section>
     </main>
 
     <!-- JavaScript -->
