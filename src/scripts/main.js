@@ -1046,3 +1046,316 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Export for ES6 modules
 export default ContactForm;
+
+// -----------------------------------------------------------------------------
+// Footer JavaScript Module
+// Path: src/scripts/modules/footer.js
+// -----------------------------------------------------------------------------
+
+class Footer {
+  constructor() {
+    this.backToTopBtn = document.getElementById('back-to-top');
+    this.newsletterForm = document.getElementById('newsletter-form');
+    this.currentYearElement = document.getElementById('current-year');
+    this.footer = document.getElementById('footer');
+
+    this.scrollThreshold = 300;
+    this.isScrolling = false;
+
+    this.init();
+  }
+
+  init() {
+    if (!this.footer) return;
+
+    this.updateCurrentYear();
+    this.setupBackToTop();
+    this.setupNewsletter();
+    this.setupSmoothScroll();
+    this.observeFooter();
+  }
+
+  // Update current year
+  updateCurrentYear() {
+    if (this.currentYearElement) {
+      this.currentYearElement.textContent = new Date().getFullYear();
+    }
+  }
+
+  // Back to top button functionality
+  setupBackToTop() {
+    if (!this.backToTopBtn) return;
+
+    // Show/hide button based on scroll position
+    this.handleScroll = this.throttle(() => {
+      const scrolled = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrolled > this.scrollThreshold) {
+        this.backToTopBtn.classList.add('show');
+      } else {
+        this.backToTopBtn.classList.remove('show');
+      }
+    }, 100);
+
+    window.addEventListener('scroll', this.handleScroll);
+
+    // Click to scroll to top
+    this.backToTopBtn.addEventListener('click', () => {
+      this.scrollToTop();
+    });
+
+    // Keyboard support
+    this.backToTopBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.scrollToTop();
+      }
+    });
+  }
+
+  // Smooth scroll to top
+  scrollToTop() {
+    const scrollDuration = 600;
+    const scrollStep = -window.scrollY / (scrollDuration / 15);
+
+    const scrollInterval = setInterval(() => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+      } else {
+        clearInterval(scrollInterval);
+        // Focus on skip link or header for accessibility
+        const skipLink = document.querySelector('.skip-link');
+        if (skipLink) {
+          skipLink.focus();
+        }
+      }
+    }, 15);
+
+    // Alternative: Use smooth scroll behavior if supported
+    if ('scrollBehavior' in document.documentElement.style) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  // Newsletter form handling
+  setupNewsletter() {
+    if (!this.newsletterForm) return;
+
+    this.newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const emailInput = this.newsletterForm.querySelector(
+        'input[type="email"]'
+      );
+      const submitButton = this.newsletterForm.querySelector(
+        'button[type="submit"]'
+      );
+
+      if (!emailInput || !submitButton) return;
+
+      const email = emailInput.value.trim();
+
+      // Validate email
+      if (!this.validateEmail(email)) {
+        this.showNewsletterMessage(
+          'error',
+          'Por favor, insira um email válido'
+        );
+        return;
+      }
+
+      // Disable form during submission
+      emailInput.disabled = true;
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+      try {
+        // Simulate API call (replace with actual endpoint)
+        await this.subscribeToNewsletter(email);
+
+        // Success
+        this.showNewsletterMessage(
+          'success',
+          'Inscrição realizada com sucesso!'
+        );
+        emailInput.value = '';
+      } catch (error) {
+        // Error
+        console.error('Newsletter subscription error:', error);
+        this.showNewsletterMessage(
+          'error',
+          'Erro ao realizar inscrição. Tente novamente.'
+        );
+      } finally {
+        // Re-enable form
+        emailInput.disabled = false;
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
+      }
+    });
+  }
+
+  // Validate email format
+  validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  // Subscribe to newsletter (replace with actual API call)
+  async subscribeToNewsletter(email) {
+    // Example integration with newsletter service
+    // const response = await fetch('YOUR_NEWSLETTER_API_ENDPOINT', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ email })
+    // });
+
+    // Simulate API delay
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ success: true });
+      }, 1500);
+    });
+  }
+
+  // Show newsletter message
+  showNewsletterMessage(type, message) {
+    // Remove existing messages
+    const existingMessage = this.newsletterForm.parentElement.querySelector(
+      '.footer__newsletter-message'
+    );
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    // Create new message
+    const messageElement = document.createElement('p');
+    messageElement.className = `footer__newsletter-message footer__newsletter-message--${type}`;
+    messageElement.innerHTML = `
+      <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+      ${message}
+    `;
+
+    // Insert message after form
+    this.newsletterForm.appendChild(messageElement);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+      messageElement.remove();
+    }, 5000);
+  }
+
+  // Setup smooth scroll for footer links
+  setupSmoothScroll() {
+    const footerLinks = this.footer.querySelectorAll('a[href^="#"]');
+
+    footerLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+
+        // Skip if it's just '#'
+        if (href === '#') return;
+
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+
+          // Update URL without jump
+          if (history.pushState) {
+            history.pushState(null, null, href);
+          }
+        }
+      });
+    });
+  }
+
+  // Observe footer for animations
+  observeFooter() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Add animation class when footer comes into view
+          entry.target.classList.add('footer--visible');
+
+          // Animate social links with stagger
+          const socialLinks = entry.target.querySelectorAll(
+            '.footer__social-link'
+          );
+          socialLinks.forEach((link, index) => {
+            setTimeout(() => {
+              link.style.animation = 'fadeInUp 0.5s ease forwards';
+            }, index * 100);
+          });
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(this.footer);
+  }
+
+  // Throttle function for scroll events
+  throttle(func, delay) {
+    let timeoutId;
+    let lastExecTime = 0;
+
+    return function (...args) {
+      const currentTime = Date.now();
+
+      if (currentTime - lastExecTime > delay) {
+        func.apply(this, args);
+        lastExecTime = currentTime;
+      } else {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(
+          () => {
+            func.apply(this, args);
+            lastExecTime = Date.now();
+          },
+          delay - (currentTime - lastExecTime)
+        );
+      }
+    };
+  }
+
+  // Public method to update newsletter endpoint
+  setNewsletterEndpoint(endpoint) {
+    this.newsletterEndpoint = endpoint;
+  }
+
+  // Public method to programmatically show back to top
+  showBackToTop() {
+    if (this.backToTopBtn) {
+      this.backToTopBtn.classList.add('show');
+    }
+  }
+
+  // Public method to hide back to top
+  hideBackToTop() {
+    if (this.backToTopBtn) {
+      this.backToTopBtn.classList.remove('show');
+    }
+  }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const footer = new Footer();
+
+  // Export for global use if needed
+  window.footerModule = footer;
+});
